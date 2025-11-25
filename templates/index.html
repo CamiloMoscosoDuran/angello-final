@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Restaurante Angello{% endblock %}</title>
+
+  <!-- Estilos principales -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/chatbot.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar-responsive.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="min-h-screen flex flex-col" 
+      data-logged-in="{{ session.get('loggedin') | default(false) | tojson }}"
+      data-user-name="{{ session.get('apodo', session.get('nombre', '')) | e }}"
+      data-user-id="{{ session.get('id', '') }}">
+
+  <!-- Contenido dinámico -->
+  <main id="content" class="flex-grow flex flex-col">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Chatbot flotante mejorado -->
+  <div id="chatbot-container">
+    <button id="chatbot-toggle" class="chat-button">
+      <i class="fas fa-robot"></i>
+      <span class="chat-notification" id="chat-notification">1</span>
+    </button>
+
+    <!-- Ventana del chat -->
+    <div id="chat-window" class="chat-hidden">
+      
+      <!-- Header del chat -->
+      <div class="chat-header">
+        <div class="chat-avatar">
+          <img src="{{ url_for('static', filename='image/inicio/logo.png') }}" alt="Angello Bot" class="avatar-img">
+        </div>
+        <div class="chat-title">
+          <h3>Asistente Angello</h3>
+          <span class="status-indicator">
+            <i class="fas fa-circle"></i>
+            En línea
+          </span>
+        </div>
+        <div class="chat-controls">
+          <button id="minimize-button" class="control-button" title="Minimizar">
+            <i class="fas fa-minus"></i>
+          </button>
+          <button id="close-button" class="control-button" title="Cerrar">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Área de mensajes -->
+      <div class="chat-messages" id="chat-messages">
+        <div class="typing-indicator" id="typing-indicator" style="display: none;">
+          <div class="typing-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <span class="typing-text">Angello está escribiendo...</span>
+        </div>
+      </div>
+
+      <!-- Sugerencias rápidas -->
+      <div class="quick-suggestions" id="quick-suggestions">
+        <!-- Las sugerencias se generarán dinámicamente por JavaScript -->
+      </div>
+
+      <!-- Input de mensajes -->
+      <div class="chat-input">
+        <button id="attach-btn" class="attach-button" title="Adjuntar">
+          <i class="fas fa-paperclip"></i>
+        </button>
+        <input type="text" id="chat-input-text" placeholder="Escribe tu mensaje..." autocomplete="off">
+        <button id="send-button" class="send-button" title="Enviar">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+
+      <!-- Footer del chat -->
+      <div class="chat-footer">
+        <span class="powered-by">
+          <i class="fas fa-robot"></i>
+          Asistente Virtual Angello
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Datos del usuario para JavaScript (movidos a archivo externo) -->
+
+  <!-- Footer principal -->
+  <footer class="bg-footer-custom text-white py-8 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 border-b border-gray-700/50 pb-6">
+
+        <!-- Descripción -->
+        <div>
+          <h3 class="text-2xl font-bold text-cream-text tracking-wider">AMBITO</h3>
+          <p class="mt-2 text-sm text-gray-300">
+            Sabor, tradición y pasión en cada plato.
+          </p>
+        </div>
+
+        <!-- Navegación -->
+        <nav>
+          <h4 class="text-lg font-semibold text-cream-text uppercase tracking-wider mb-3">Navegación</h4>
+          <ul class="space-y-2">
+            <li><a href="{{ url_for('inicio') }}" class="block text-sm text-gray-300 hover:text-cream-text transition">Inicio</a></li>
+            <li><a href="{{ url_for('cartas') }}" class="block text-sm text-gray-300 hover:text-cream-text transition">Nuestra Carta</a></li>
+            <li><a href="{{ url_for('historia') }}" class="block text-sm text-gray-300 hover:text-cream-text transition">Nuestra Historia</a></li>
+            <li><a href="{{ url_for('delivery') }}" class="block text-sm text-gray-300 hover:text-cream-text transition">Delivery</a></li>
+          </ul>
+        </nav>
+
+        <!-- Contacto -->
+        <div>
+          <h4 class="text-lg font-semibold text-cream-text uppercase tracking-wider mb-3">Contacto & Horario</h4>
+          <p class="text-sm text-gray-300">
+            <strong>Reservas:</strong> (51) 987 654 321<br>
+            <strong>Email:</strong> contacto@ambito.com<br><br>
+            <strong>Horario de Atención:</strong><br>
+            Martes a Domingo<br>
+            2pm - 11pm
+          </p>
+        </div>
+
+        <!-- Redes sociales -->
+        <div>
+          <h4 class="text-lg font-semibold text-cream-text uppercase tracking-wider mb-3">Síguenos</h4>
+          <div class="flex space-x-4">
+            <a href="https://www.facebook.com/profile.php?id=100075977147179&sk=photos&locale=es_LA" target="_blank" class="hover:text-cream-text transition">
+              <img src="{{ url_for('static', filename='icon/facebook.png') }}" alt="Facebook" class="w-6 h-6">
+            </a>
+            <a href="https://wa.me/XXXXXXXXXX" target="_blank" class="hover:text-cream-text transition">
+              <img src="{{ url_for('static', filename='icon/whatsapp.png') }}" alt="WhatsApp" class="w-6 h-6">
+            </a>
+            <a href="https://www.instagram.com/angello.restaurante?igsh=YWNhYXVrZ3JuZWk2" target="_blank" class="hover:text-cream-text transition">
+              <img src="{{ url_for('static', filename='icon/instagram.png') }}" alt="Instagram" class="w-6 h-6">
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-6 text-center text-sm text-gray-500">
+        &copy; <span id="currentYear"></span> AMBITO. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="{{ url_for('static', filename='js/chatbot-config.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+</body>
+</html>
+

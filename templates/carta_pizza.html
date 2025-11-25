@@ -1,0 +1,122 @@
+﻿{% extends "index.html" %}
+
+{% block title %}Carta - Pizzas{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cartas.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="flex-grow bg-main bg-cartas min-h-screen flex flex-col">
+    <nav class="flex justify-between items-center p-4 bg-black bg-opacity-50 text-white shadow-lg sticky top-0 z-50">
+        <a href="{{ url_for('cartas') }}" class="text-orange-500 hover:text-white transition-colors font-bold text-lg">← Volver a la Carta</a>
+    </nav>
+
+    <div class="flex flex-col items-center justify-center p-8 space-y-8">
+        <h1 class="text-5xl font-cinzel text-white mb-4">Pizzas</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl">
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">24</div>
+                <img src="{{ url_for('static', filename='image/carta-pizza/pizza1.jpg') }}" alt="Pizza Margarita" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Pizza Margarita</h3>
+                    <p>Clásica pizza con mozzarella, tomate cherry, queso mozzarella.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">25</div>
+                <img src="{{ url_for('static', filename='image/carta-pizza/pizza2.jpg') }}" alt="Pizza Vegetariana" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Pizza Vegetariana</h3>
+                    <p>Salsa de tomate, berenjena, zapallo italiano, tomate cherry, aceitunas verdes, tocino, champiñones, pimiento, queso mozzarella.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">25</div>
+                <img src="{{ url_for('static', filename='image/carta-pizza/pizza3.jpg') }}" alt="Pizza Americana" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Pizza Americana</h3>
+                    <p>Salsa de tomate, jamón, queso mozzarella.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">26</div>
+                <img src="{{ url_for('static', filename='image/carta-pizza/pizza3.jpg') }}" alt="Pizza Hawaiana" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Pizza Hawaiana</h3>
+                    <p>Salsa de tomate, jamón, queso mozzarella, piña.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">30</div>
+                <img src="{{ url_for('static', filename='image/carta-pizza/pizza3.jpg') }}" alt="Pizza Pepperoni" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Pizza Pepperoni</h3>
+                    <p>Salsa de tomate, pepperoni, queso mozzarella.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">30</div>
+                <img src="{{ url_for('static', filename='image/carta-pizza/pizza3.jpg') }}" alt="Pizza Angello" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Pizza Angello</h3>
+                    <p>Salsa de tomate, jamón, aceitunas verdes, tocino, salame, cabanossi, pimiento, queso mozzarella. Pizza especial de la casa.</p>
+                </div>
+            </div>
+
+            <!-- Sección de Agregados -->
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative md:col-span-2">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-4 text-center">Agrégale a tu Pizza</h3>
+                    <p class="text-center mb-4">Puedes escoger dos sabores para tu pizza</p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                        <div class="flex justify-between">
+                            <span>Pimiento</span>
+                            <span class="inline-price">2</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Champiñones</span>
+                            <span class="inline-price">3</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Aceitunas</span>
+                            <span class="inline-price">3</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Extra Jamón</span>
+                            <span class="inline-price">4</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Tocino</span>
+                            <span class="inline-price">4</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Cabanossi</span>
+                            <span class="inline-price">4</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Salame</span>
+                            <span class="inline-price">4</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Pepperoni</span>
+                            <span class="inline-price">5</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Extra Queso</span>
+                            <span class="inline-price">6</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,782 @@
+/* ------------------------------------------------------------ */
+/* CARTAS.CSS - Estilo visual coherente con RESERVA.CSS */
+/* ------------------------------------------------------------ */
+
+/* FUENTES PRINCIPALES - Mismo estilo que Reserva */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap');
+
+/* FONDO GLOBAL para cubrir toda la página */
+html, body {
+  background-color: #E9E4C7;
+  background-image: url('../image/carta/fondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* FONDO GENERAL (idéntico a reserva) */
+.bg-cartas {
+  background-color: #E9E4C7;
+  background-image: url('../image/carta/fondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+  min-height: 100vh;
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ------------------------------------------------------------ */
+/* OPTIMIZACIÓN ESPECÍFICA PARA TAILWIND 4.1 */
+/* ------------------------------------------------------------ */
+
+/* Utilidades de espaciado optimizadas */
+.p-8 { padding: 0.75rem !important; }
+.p-6 { padding: 0.5rem !important; }
+.gap-8 { gap: 0.75rem !important; }
+.space-y-8 > * + * { margin-top: 0.75rem !important; }
+.mb-4 { margin-bottom: 0.25rem !important; }
+.h-64 { height: 200px !important; }
+
+/* Grid específico */
+.max-w-5xl { max-width: 1200px !important; }
+
+/* Contenedores flex optimizados */
+.flex-grow {
+  padding: 0.5rem 1rem !important;
+}
+
+/* ------------------------------------------------------------ */
+/* OPTIMIZACIÓN ESPECIAL PARA TODAS LAS SECCIONES */
+/* ------------------------------------------------------------ */
+.flex-grow {
+  padding: 0.5rem 1rem;
+}
+
+.flex.flex-col.items-center.justify-center {
+  padding: 1rem 0.5rem;
+}
+
+/* Título principal de la sección - compacto */
+.text-5xl.font-cinzel {
+  margin-bottom: 0.5rem !important;
+  margin-top: 0 !important;
+}
+
+/* Grid con espaciado optimizado para todas las secciones */
+.grid.grid-cols-1.md\:grid-cols-2 {
+  gap: 1rem !important;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Grid específico para bebidas con más columnas */
+.grid.grid-cols-1.md\:grid-cols-3 {
+  gap: 0.8rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Tarjetas con espaciado interno mínimo */
+.bg-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bg-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Padding interno muy reducido */
+.bg-card .p-6 {
+  padding: 0.75rem !important;
+}
+
+/* Altura de imagen optimizada */
+.bg-card img {
+  height: 200px !important;
+  object-fit: cover;
+}
+
+/* Espaciado específico para el contenedor principal */
+.bg-main.bg-cartas.min-h-screen {
+  padding: 0;
+}
+
+/* Optimización para el contenedor flex principal */
+.flex-grow.bg-main.bg-cartas {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+
+/* ------------------------------------------------------------ */
+/* ESTILOS DE LAYOUT Y ENCABEZADO (COHERENCIA CON RESERVA) */
+/* ------------------------------------------------------------ */
+
+/* Estilos específicos para cartas que complementan navbar-responsive.css */
+.saludo {
+  color: #ffb86b;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+}
+
+.btn-accent {
+  background: linear-gradient(90deg, #ff8c42, #ffb86b);
+  color: #4a0b07;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  transition: all 0.3s ease-in-out;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+
+.btn-accent:hover {
+  background: linear-gradient(90deg, #ffb86b, #ff8c42);
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(255, 184, 107, 0.5);
+}
+.main-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3rem 1rem;
+  width: 100%;
+}
+
+.btn-gold {
+  background: linear-gradient(90deg, #ff8c42, #ffb86b);
+  color: #4a0b07;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+  transition: all 0.3s ease-in-out;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+}
+
+.btn-gold:hover {
+  background: linear-gradient(90deg, #ffb86b, #ff8c42);
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(255, 184, 107, 0.5);
+}
+
+.section-title {
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  color: #ffb86b;
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.section-subtitle {
+  text-align: center;
+  color: #f1e1c1;
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
+}
+
+.content-box {
+  background: rgba(72, 20, 17, 0.92);
+  border: 1px solid rgba(255, 200, 150, 0.1);
+  border-radius: 14px;
+  padding: 4rem 2rem;
+  max-width: 900px;
+  width: 100%;
+  color: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 1s ease;
+  /* Añadido para consistencia */
+}
+
+.content-box::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 2px solid rgba(212, 179, 124, 0.9);
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+/* ------------------------------------------------------------ */
+/* ESTILOS DE TARJETA (CARTA/MENÚ) */
+/* ------------------------------------------------------------ */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.card {
+  background: rgba(72, 20, 17, 0.9);
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 200, 150, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+  height: auto;
+  display: block;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 2px solid rgba(212, 179, 124, 0.9);
+  pointer-events: none;
+  border-radius: 10px;
+  z-index: 10;
+}
+
+.card-body {
+  background: linear-gradient(90deg, rgba(90, 20, 18, 0.9), rgba(80, 18, 16, 0.9));
+  padding: 1.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f1e1c1;
+  position: relative;
+  z-index: 1;
+}
+
+.card-body h3 {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.08em;
+  color: #ffb86b;
+  font-size: 2rem;
+  line-height: 1;
+  margin: 0;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
+}
+
+.card-img {
+  background: #E9E4C7;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 12rem;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.02) contrast(1.05);
+  display: block;
+  border: none;
+  box-shadow: none;
+  border-radius: 14px 14px 0 0;
+}
+
+.card:hover .card-img img {
+  transform: scale(1.03);
+}
+
+/* ------------------------------------------------------------ */
+/* Animaciones */
+/* ------------------------------------------------------------ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ------------------------------------------------------------ */
+/* FOOTER */
+/* ------------------------------------------------------------ */
+footer {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.05em;
+}
+
+footer a {
+  color: #ffb86b;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #ffffff;
+}
+
+/* ------------------------------------------------------------ */
+/* RESPONSIVE */
+/* ------------------------------------------------------------ */
+@media (min-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .section-title {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .card-img img {
+    border-radius: 10px 10px 0 0;
+  }
+}
+
+/* ------------------------------------------------------------ */
+/* ESTILOS PARA PRECIOS */
+/* ------------------------------------------------------------ */
+.price-tag {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: linear-gradient(135deg, #ff8c42, #ffb86b);
+  color: #4a0b07;
+  font-weight: 800;
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  padding: 8px 12px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(255, 140, 66, 0.4);
+  z-index: 20;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(3px);
+  transform: scale(1);
+  transition: all 0.3s ease;
+}
+
+.price-tag:before {
+  content: 'S/ ';
+  font-size: 0.9em;
+  opacity: 0.9;
+}
+
+.card:hover .price-tag {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(255, 140, 66, 0.6);
+}
+
+/* Precio en línea dentro del contenido */
+.inline-price {
+  color: #ffb86b;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  margin-left: 10px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.inline-price:before {
+  content: 'S/ ';
+  font-size: 0.9em;
+}
+
+/* Precio múltiple para productos con variantes */
+.multi-price {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.multi-price .price-option {
+  background: rgba(255, 140, 66, 0.9);
+  color: #4a0b07;
+  font-weight: 600;
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  padding: 4px 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.multi-price .price-option:before {
+  content: 'S/ ';
+  font-size: 0.8em;
+}
+
+.multi-price .size-label {
+  color: #f1e1c1;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-right: 4px;
+}
+
+/* Extras */
+.cta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cta-bar .icon {
+  font-size: 1.1rem;
+}
+
+.cta-bar a {
+  text-decoration: none;
+}
+
+.max-w-6xl {
+  position: relative;
+  z-index: 2;
+}
+
+/* ------------------------------------------------------------ */
+/* MODO FILTRADO: cuando el usuario muestra solo una sección */
+/* ------------------------------------------------------------ */
+
+/* Solo oscurecer navbar y footer, mantener el fondo original */
+body.filtered .navbar {
+  background: rgba(0,0,0,0.95) !important;
+}
+
+body.filtered footer {
+  background: rgba(10,10,10,0.95) !important;
+}
+
+/* Mantener el fondo global cuando está filtrado */
+html.filtered, body.filtered {
+  background-color: #E9E4C7 !important;
+  background-image: url('../image/carta/fondo.png') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+}
+
+/* Reducir espaciado en modo filtrado */
+body.filtered section {
+  padding: 0 0.5rem 2rem 0.5rem !important;
+  margin-top: 0 !important;
+  position: relative;
+  top: 0 !important;
+}
+
+body.filtered section h1 {
+  margin-bottom: 1rem !important;
+  margin-top: 0 !important;
+  padding-top: 1rem !important;
+}
+
+body.filtered .grid {
+  gap: 1.5rem !important;
+}
+
+/* Asegurar que el contenedor principal no tenga altura mínima innecesaria cuando filtrado */
+body.filtered .bg-cartas {
+  min-height: auto !important;
+}
+
+/* Eliminar cualquier margin/padding entre elementos en modo filtrado */
+body.filtered .flex-grow {
+  padding-top: 0 !important;
+}
+
+/* Botón "Mostrar todo" */
+.show-all-btn {
+  font-family: 'Open Sans', sans-serif;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+}
+/* ------------------------------------------------------------ */
+/* OPTIMIZACIÓN DE TEXTOS – LEGIBILIDAD Y ADAPTACIÓN */
+/* ------------------------------------------------------------ */
+
+/* Títulos principales */
+h1, .section-title {
+  font-family: 'Cinzel', serif;
+  color: #ffb86b;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  text-align: center;
+  line-height: 1.2;
+  text-shadow: 0 3px 8px rgba(0,0,0,0.5);
+}
+
+/* Títulos dentro de tarjetas */
+.card h3 {
+  font-family: 'Cinzel', serif !important;
+  color: #ffb86b;
+  font-size: clamp(1.3rem, 2.2vw, 2rem) !important;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+/* Descripción de cada pizza/bebida */
+.card p {
+  font-size: clamp(0.9rem, 1.1vw, 1.1rem);
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.45;
+  margin-top: 0.4rem;
+  color: #f1e1c1;
+}
+
+/* Precios dentro de agregados */
+.inline-price {
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+}
+
+/* Etiqueta de precio principal */
+.price-tag {
+  font-size: clamp(1rem, 1.4vw, 1.3rem);
+  padding: 6px 12px;
+}
+
+/* Orden y espaciado dentro de las tarjetas */
+.card .p-6 {
+  padding: 1.3rem 1rem !important;
+}
+
+/* Contenedor de agregados: textos ordenados */
+.md\:col-span-2 p,
+.md\:col-span-2 span {
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+}
+
+/* Título de "Agrégale a tu Pizza" */
+.md\:col-span-2 h3 {
+  font-size: clamp(1.8rem, 3vw, 2.3rem);
+  color: #ffb86b;
+}
+
+/* Alineación perfecta de extras */
+.md\:col-span-2 .grid div {
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Especial para móviles */
+@media (max-width: 480px) {
+  .card p {
+    text-align: center;
+  }
+
+  .card h3 {
+    text-align: center;
+  }
+
+  .price-tag {
+    right: 8px;
+    top: 8px;
+    padding: 5px 10px;
+  }
+}
+/* ------------------------------------------------------------ */
+/* OPTIMIZACIÓN PARA ORDEN, ESPACIADO Y LETRA MÁS PEQUEÑA      */
+/* ------------------------------------------------------------ */
+
+/* Tamaños base más pequeños y ordenados */
+.card {
+  padding: 1rem !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 360px; /* espacio para botones */
+}
+
+/* Título del producto (pizza, bebida) */
+.card h3 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  margin-bottom: 0.5rem;
+  color: #ffb86b;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Descripción más compacta */
+.card p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  color: #f1e1c1;
+  margin: 0.3rem 0 0.6rem 0;
+  line-height: 1.3;
+  text-align: center;
+}
+
+/* Precio dentro de las tarjetas */
+.price-tag {
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  padding: 4px 10px;
+  top: 10px;
+  right: 10px;
+}
+
+/* Imagen más pequeña y ordenada */
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Distribución del contenido */
+.card-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Espaciado general interno */
+.card .p-6 {
+  padding: 1rem !important;
+}
+
+/* ------------------------------------------------------------ */
+/* SECCIÓN DE AGREGADOS - MÁS ORDENADA Y LETRA REDUCIDA        */
+/* ------------------------------------------------------------ */
+
+.md\:col-span-2 h3 {
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  margin-bottom: 0.8rem;
+  text-align: center;
+}
+
+/* Cada extra alineado y más pequeño */
+.md\:col-span-2 .grid div {
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Precio del agregado */
+.inline-price {
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+}
+
+/* ------------------------------------------------------------ */
+/* PREPARADO PARA BOTONES DE CARRITO (ESPACIO RESERVADO)        */
+/* ------------------------------------------------------------ */
+.card .button-area {
+  margin-top: auto;
+  padding-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* Botón estilo placeholder */
+.card .button-area button {
+  font-size: 0.75rem;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid #ffb86b;
+  background: transparent;
+  color: #ffb86b;
+  cursor: pointer;
+}
+.card .button-area button:hover {
+  background: rgba(255,184,107,0.1);
+}
+  
+
+/* ------------------------------------------------------------ */
+/* MÓVILES - TODO CENTRADO Y COMPACTO                           */
+/* ------------------------------------------------------------ */
+
+@media (max-width: 480px) {
+  .card {
+    min-height: 330px;
+  }
+
+  .card img {
+    height: 150px;
+  }
+
+  .button-area button {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+  }
+}
+
+/* CARD — siempre imagen arriba, título debajo y descripción al final */
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0,0,0,0.55);
+    border-radius: 14px;
+    overflow: hidden;
+    padding-bottom: 12px;
+    text-align: center;
+}
+
+/* Imagen arriba */
+.card-img img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Contenedor del texto */
+.card-body {
+    padding: 0.8rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4px; /* compacto */
+}
+
+/* Título debajo de la imagen */
+.card-body h3 {
+    font-size: 1.1rem;
+    margin: 0;
+    color: #ffb86b;
+    font-family: 'Cinzel', serif;
+}
+
+/* Descripción debajo del título */
+.card-body p {
+    font-size: 0.9rem;
+    margin: 0;
+    color: #f1e1c1;
+    line-height: 1.3;
+}
+
+/* Responsive para evitar desbordes */
+@media (max-width: 480px) {
+    .card-img img {
+        height: 160px;
+    }
+    
+    .card-body h3 {
+        font-size: 1rem;
+    }
+    
+    .card-body p {
+        font-size: 0.85rem;
+    }
+}

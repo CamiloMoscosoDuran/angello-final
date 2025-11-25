@@ -1,0 +1,87 @@
+﻿{% extends "index.html" %}
+
+{% block title %}Inicio Premium - Restaurante Angello{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/inicio_premium.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="bg-inicio-premium min-h-screen">
+
+  <!-- NAVBAR (mismo estilo que reserva y cartas) -->
+  <nav class="navbar">
+    <div class="logo">
+      <a href="{{ url_for('inicio') }}">
+        <img src="{{ url_for('static', filename='image/inicio/logo.png') }}" alt="Logo Angello">
+      </a>
+      <span>Angello</span>
+    </div>
+
+    <div class="links">
+      <a href="{{ url_for('inicio') }}" class="main-link">Inicio</a>
+      <a href="{{ url_for('cartas') }}" class="main-link">Nuestra Carta</a>
+      <a href="{{ url_for('historia') }}">Nuestra Historia</a>
+      <a href="{{ url_for('promociones') }}">Promociones</a>
+      <a href="{{ url_for('reserva') }}">Reservaciones</a>
+      <a href="{{ url_for('delivery') }}">Delivery</a>
+    </div>
+
+    <div class="user-actions">
+      {% if loggedin %}
+      <a href="{{ url_for('logout') }}" class="btn-accent">Cerrar sesión</a>
+      {% else %}
+      <a href="{{ url_for('inicio_secion') }}" class="btn-accent">Iniciar Sesión</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div class="container">
+    {% if success %}
+    <div class="alert-success">
+      <p>{{ success }}</p>
+    </div>
+    {% endif %}
+
+    <div class="hero-content">
+
+      <div class="carrusel-container">
+        <div class="carrusel-slide fade">
+          <img src="{{ url_for('static', filename='image/inicio/bebida.jpg') }}" alt="Pasta Angello">
+        </div>
+        <div class="carrusel-slide fade">
+          <img src="{{ url_for('static', filename='image/inicio/pizza.jpg') }}" alt="Pizza Restaurante">
+        </div>
+        <div class="carrusel-slide fade">
+          <img src="{{ url_for('static', filename='image/inicio/pollo.jpg') }}" alt="Ambiente Restaurante">
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <div style="text-align:center" class="carrusel-dots">
+          <span class="dot" onclick="currentSlide(1)"></span>
+          <span class="dot" onclick="currentSlide(2)"></span>
+          <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h1>Tu Experiencia Premium Angello</h1>
+        <p class="descripcion">¡Bienvenido de vuelta, {{ nombre }}! Ahora tienes acceso a todo el sitio y a nuestras ofertas exclusivas.</p>
+
+        <h2>Nuestros horarios de atención</h2>
+        <p>Martes a Domingo</p>
+        <p>2:00 pm hasta las 11:00 pm</p>
+
+        <a href="{{ url_for('promociones') }}" class="btn-principal">Ver Promociones</a>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+<script src="{{ url_for('static', filename='js/carrusel.js') }}"></script>
+{% endblock %}
+

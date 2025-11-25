@@ -1,0 +1,90 @@
+{% extends "index.html" %}
+
+{% block title %}Delivery - Restaurante Angello{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/delivery.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="bg-delivery">
+
+    <!-- NAVBAR igual a RESERVA -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="{{ url_for('inicio') }}">
+                <img src="{{ url_for('static', filename='image/inicio/logo.png') }}" alt="Logo Angello">
+            </a>
+        </div>
+
+        <div class="links">
+            <a href="{{ url_for('inicio') }}">Inicio</a>
+            <a href="{{ url_for('cartas') }}">Nuestra Carta</a>
+            <a href="{{ url_for('historia') }}">Nuestra Historia</a>
+            {% if loggedin %}
+                <a href="{{ url_for('promociones') }}">Promociones</a>
+                <a href="{{ url_for('reserva') }}">Reservaciones</a>
+                <a href="{{ url_for('delivery') }}">Delivery</a>
+            {% else %}
+                <a href="{{ url_for('inicio_secion') }}">Promociones</a>
+                <a href="{{ url_for('inicio_secion') }}">Reservaciones</a>
+                <a href="{{ url_for('inicio_secion') }}">Delivery</a>
+            {% endif %}
+
+        </div>
+
+        <div class="user-actions">
+            {% if loggedin %}
+                <a href="{{ url_for('logout') }}" class="btn-accent">Cerrar sesión</a>
+            {% else %}
+                <a href="{{ url_for('inicio_secion') }}" class="btn-accent">Iniciar Sesión</a>
+            {% endif %}
+            <a href="{{ url_for('carrito') }}" class="btn-accent">Carrito ({{ session.get('cart')|length if session.get('cart') else 0 }})</a>
+        </div>
+    </nav>
+
+    <!-- SECCIÓN PRINCIPAL DELIVERY -->
+    <section class="delivery-container">
+        <h1 class="titulo-delivery">Servicio de Delivery</h1>
+        <p class="descripcion-delivery">
+            Disfruta el sabor de <strong>Angello</strong> desde la comodidad de tu hogar.  
+            Realiza tu pedido por teléfono, WhatsApp o directamente en línea.  
+            ¡Te llevamos nuestros platos con la misma calidad y atención que en el restaurante!
+        </p>
+
+        <div class="opciones-delivery">
+            <div class="card-delivery">
+                <img src="{{ url_for('static', filename='image/delivery/telefono.png') }}" alt="Teléfono">
+                <h3>¡Haz tu pedido ya!</h3>
+                <p>Haz tu pedido en línea ahora.</p>
+                <a href="{{ url_for('delivery_carta') }}" class="btn-delivery">Ir a la carta</a>
+            </div>
+
+            <div class="card-delivery">
+                <img src="{{ url_for('static', filename='image/delivery/whatsapp.png') }}" alt="WhatsApp">
+                <h3>WhatsApp</h3>
+                <p>Haz tu pedido rápido por chat.</p>
+                <a href="https://wa.me/XXXXXXXXXX" target="_blank" class="btn-delivery">Enviar mensaje</a>
+            </div>
+
+            <div class="card-delivery">
+                <img src="{{ url_for('static', filename='image/delivery/localizacion.png') }}" alt="Cobertura">
+                <h3>Cobertura</h3>
+                <p>Atendemos en <strong>Cañete, Imperial y San Vicente</strong>.</p>
+                <p class="tiempo">Tiempo promedio: 30-45 minutos.</p>
+            </div>
+        </div>
+
+        <div class="horarios-delivery">
+            <h2>Horarios de Reparto</h2>
+            <p>Martes a Domingo — 2:00 p.m. a 11:00 p.m.</p>
+        </div>
+
+        <div class="boton-carta">
+            <a href="{{ url_for('delivery_carta') }}" class="btn-delivery">Ir a la carta</a>
+
+        </div>
+    </section>
+
+</div>
+{% endblock %}

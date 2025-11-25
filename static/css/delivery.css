@@ -1,0 +1,303 @@
+/* ------------------------------------------------------------ */
+/* DELIVERY.CSS - Estilo visual coherente con RESERVA.CSS */
+/* ------------------------------------------------------------ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap');
+
+/* FONDO GENERAL */
+.bg-delivery {
+  background-color: #E9E4C7;
+  background-image: url('../image/inicio/fondo.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: 'Open Sans', sans-serif;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ------------------------------------------------------------ */
+/* NAVBAR (idéntico a RESERVA) */
+/* ------------------------------------------------------------ */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  /* ← mismo espaciado */
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.navbar .logo img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 2px solid #ffb86b;
+}
+
+.navbar .links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 0.8rem;
+  transition: all 0.3s ease;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.03em;
+}
+
+.navbar .links a:hover,
+.navbar .links a.activo {
+  color: #ffb86b;
+  transform: translateY(-2px);
+}
+
+/* ------------------------------------------------------------ */
+/* USER ACTIONS (Copiado de RESERVA.CSS) */
+/* ------------------------------------------------------------ */
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.saludo {
+  color: #ffb86b;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+}
+
+/* BOTÓN IGUAL AL DE INICIO */
+.btn-accent {
+  background: linear-gradient(90deg, #ff8c42, #ffb86b);
+  color: #4a0b07;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  transition: all 0.3s ease-in-out;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+
+.btn-accent:hover {
+  background: linear-gradient(90deg, #ffb86b, #ff8c42);
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(255, 184, 107, 0.5);
+}
+
+/* ------------------------------------------------------------ */
+/* Sección principal */
+/* ------------------------------------------------------------ */
+.delivery-container {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: white;
+  background: rgba(72, 20, 17, 0.85);
+  margin: 3rem auto;
+  border-radius: 18px;
+  max-width: 1100px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 200, 150, 0.2);
+}
+
+.titulo-delivery {
+  font-family: 'Cinzel', serif;
+  color: #ffb86b;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
+}
+
+.descripcion-delivery {
+  color: #f3e1c0;
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ------------------------------------------------------------ */
+/* TARJETAS */
+/* ------------------------------------------------------------ */
+.opciones-delivery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.card-delivery {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 184, 107, 0.3);
+  border-radius: 14px;
+  padding: 2rem;
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.card-delivery:hover {
+  transform: scale(1.05);
+  background: rgba(0, 0, 0, 0.85);
+  box-shadow: 0 0 20px rgba(255, 184, 107, 0.4);
+}
+
+.card-delivery img {
+  width: 80px;
+  margin-bottom: 1rem;
+}
+
+.card-delivery h3 {
+  color: #ffb86b;
+  font-family: 'Cinzel', serif;
+  margin-bottom: 0.5rem;
+}
+
+.card-delivery p {
+  color: #f3e1c0;
+  margin-bottom: 0.5rem;
+}
+
+/* Botones */
+.btn-delivery {
+  display: inline-block;
+  margin-top: 0.5rem;
+  background: linear-gradient(90deg, #25D366, #128C7E);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-delivery:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+}
+
+/* ------------------------------------------------------------ */
+/* HORARIOS */
+/* ------------------------------------------------------------ */
+.horarios-delivery {
+  margin-top: 2rem;
+}
+
+.horarios-delivery h2 {
+  font-family: 'Cinzel', serif;
+  color: #ffb86b;
+  margin-bottom: 0.5rem;
+}
+
+.horarios-delivery p {
+  color: #f3e1c0;
+}
+
+/* ------------------------------------------------------------ */
+/* Botón final */
+/* ------------------------------------------------------------ */
+.boton-carta {
+  margin-top: 2rem;
+}
+
+.btn-vercarta {
+  background: linear-gradient(90deg, #ff8c42, #ffb86b);
+  color: #4a0b07;
+  padding: 0.8rem 1.8rem;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-vercarta:hover {
+  background: linear-gradient(90deg, #ffb86b, #ff8c42);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 184, 107, 0.5);
+}
+
+/* ------------------------------------------------------------ */
+/* ANIMACIONES (Copiado de RESERVA.CSS) */
+/* ------------------------------------------------------------ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ------------------------------------------------------------ */
+/* FOOTER */
+/* ------------------------------------------------------------ */
+footer {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.05em;
+}
+
+footer a {
+  color: #ffb86b;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #ffffff;
+}
+
+/* ------------------------------------------------------------ */
+/* Responsive */
+/* ------------------------------------------------------------ */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .links {
+    margin-top: 0.5rem;
+  }
+}
+/* Delivery adaptado al estilo general */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap');
+
+.bg-delivery{
+  background-color:#E9E4C7;
+  background-image: url('../image/historia/fondo.png');
+  background-size:cover;
+  background-position:center;
+  min-height:100vh;
+  font-family:'Open Sans',sans-serif;
+  padding-bottom:60px;
+}
+
+.navbar{
+  display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem;
+  background:rgba(0,0,0,0.6); color:#fff; position:sticky; top:0; z-index:50;
+}
+
+.opciones-delivery{ display:flex; gap:18px; justify-content:center; margin-top:2rem; flex-wrap:wrap; }
+.card-delivery{ background:rgba(72,20,17,0.9); padding:20px; border-radius:12px; width:280px; text-align:center; color:#fff; border:1px solid rgba(255,200,150,0.08); }
+.card-delivery img{ width:78px; height:78px; object-fit:contain; margin-bottom:10px; }
+
+.btn-delivery, .btn-vercarta{ display:inline-block; margin-top:8px; padding:10px 14px; background:linear-gradient(90deg,#ff8c42,#ffb86b); color:#4a0b07; border-radius:8px; text-decoration:none; font-weight:700; }

@@ -1,0 +1,50 @@
+{% extends "index.html" %}
+{% block title %}Carrito - Restaurante Angello{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/carrito.css') }}">
+<script src="{{ url_for('static', filename='js/carrito.js') }}" defer></script>
+{% endblock %}
+
+{% block content %}
+<div class="bg-cartas">
+
+    <section class="carrito-container">
+        <h1>Mi Carrito</h1>
+
+        {% if not carrito %}
+        <p class="vacio">Tu carrito está vacío</p>
+        {% else %}
+        <table class="tabla-carrito">
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cant.</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+
+            {% for item in carrito %}
+            <tr>
+                <td>{{ item.nombre }}</td>
+                <td>S/ {{ item.precio }}</td>
+                <td>
+                    <input type="number" min="1" value="{{ item.cantidad }}"
+                           onchange="actualizarCantidad('{{ item.id }}', this.value)">
+                </td>
+                <td>S/ {{ item.total }}</td>
+                <td>
+                    <button class="btn-remove" onclick="eliminarProducto('{{ item.id }}')">X</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h3 class="total-general">Total: S/ {{ total_general }}</h3>
+
+        <a href="{{ url_for('pago') }}" class="btn-pagar">Proceder al pago</a>
+        {% endif %}
+    </section>
+
+</div>
+{% endblock %}
