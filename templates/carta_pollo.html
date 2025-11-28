@@ -1,0 +1,58 @@
+﻿{% extends "index.html" %}
+
+{% block title %}Carta - Pollos{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cartas.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="flex-grow bg-main bg-cartas min-h-screen flex flex-col">
+    <nav class="flex justify-between items-center p-4 bg-black bg-opacity-50 text-white shadow-lg sticky top-0 z-50">
+        <a href="{{ url_for('cartas') }}" class="text-orange-500 hover:text-white transition-colors font-bold text-lg">← Volver a la Carta</a>
+    </nav>
+
+    <div class="flex flex-col items-center justify-center p-8 space-y-8">
+        <h1 class="text-5xl font-cinzel text-white mb-4">Pollos</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl">
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">20</div>
+                <img src="{{ url_for('static', filename='image/carta-pollo/pollo1.jpg') }}" alt="1/4 Pollo a la Leña" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">1/4 Pollo a la Leña</h3>
+                    <p>+ Papas fritas y ensalada. Jugoso y dorado, acompañado con papas fritas y ensalada fresca.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">40</div>
+                <img src="{{ url_for('static', filename='image/carta-pollo/pollo2.jpg') }}" alt="1/2 Pollo a la Leña" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">1/2 Pollo a la Leña</h3>
+                    <p>+ Papas fritas y ensalada. Delicioso pollo a la leña con el sabor ahumado único.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">75</div>
+                <img src="{{ url_for('static', filename='image/carta-pollo/pollo3.jpg') }}" alt="1 Pollo a la Leña" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">1 Pollo a la Leña</h3>
+                    <p>+ Papas fritas y ensalada. Pollo entero a la leña, perfecto para compartir.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">100</div>
+                <img src="{{ url_for('static', filename='image/carta-pollo/pollo3.jpg') }}" alt="Promo Familiar" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Promo Familiar</h3>
+                    <p>1 Pollo + Papas Fritas + Ensalada + Porción de Arroz + Camote Frito + Gaseosa 1.5L. La promoción perfecta para toda la familia.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

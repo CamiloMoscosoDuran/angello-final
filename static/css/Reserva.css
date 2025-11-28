@@ -1,0 +1,286 @@
+/* ------------------------------------------------------------ */
+/* RESERVA.CSS - Estilo visual coherente con CARTAS.CSS */
+/* ------------------------------------------------------------ */
+
+/* Fuente principal */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap');
+
+/* Fondo general (idéntico a cartas) */
+.bg-reserva {
+  background-color: #E9E4C7;
+  background-image: url('../image/inicio/fondo.png');
+  /* Usar tu imagen específica de reservas */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+  min-height: 100vh;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* ------------------------------------------------------------ */
+/* NAVBAR (Consistente con CARTAS.CSS) */
+/* ------------------------------------------------------------ */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.navbar .logo img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 2px solid #ffb86b;
+}
+
+.navbar .links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 0.8rem;
+  transition: all 0.3s ease;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.03em;
+}
+
+.navbar .links a:hover {
+  color: #ffb86b;
+  transform: translateY(-2px);
+}
+
+/* ------------------------------------------------------------ */
+/* USER ACTIONS (Consistente con INICIO/CARTAS) */
+/* ------------------------------------------------------------ */
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.saludo {
+  color: #ffb86b;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+}
+
+/* BOTÓN ACCENT (General para acciones principales) */
+.btn-accent {
+  background: linear-gradient(90deg, #ff8c42, #ffb86b);
+  color: #4a0b07;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  transition: all 0.3s ease-in-out;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+
+.btn-accent:hover {
+  background: linear-gradient(90deg, #ffb86b, #ff8c42);
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(255, 184, 107, 0.5);
+}
+
+/* ------------------------------------------------------------ */
+/* FORMULARIO DE RESERVA */
+/* ------------------------------------------------------------ */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 4rem 1rem;
+}
+
+.form-box {
+  background: rgba(72, 20, 17, 0.92);
+  border: 1px solid rgba(255, 200, 150, 0.1);
+  border-radius: 14px;
+  padding: 2.5rem 3rem;
+  max-width: 600px;
+  width: 100%;
+  color: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 1s ease;
+}
+
+.form-box::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 2px solid rgba(212, 179, 124, 0.9);
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.form-box h1 {
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  color: #ffb86b;
+  font-size: 2.2rem;
+  margin-bottom: 0.8rem;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.form-box p {
+  text-align: center;
+  color: #f1e1c1;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  color: #ffb86b;
+  margin-bottom: 0.3rem;
+  font-family: 'Cinzel', serif;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 2px solid rgba(255, 184, 107, 0.3);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #ffb86b;
+  box-shadow: 0 0 10px rgba(255, 184, 107, 0.3);
+  transform: scale(1.02);
+}
+
+textarea {
+  resize: none;
+  min-height: 90px;
+}
+
+/* BOTÓN GENERAL DEL FORMULARIO */
+button {
+  width: 100%;
+  background: linear-gradient(90deg, #ff8c42, #ffb86b);
+  color: #4a0b07;
+  border: none;
+  border-radius: 8px;
+  padding: 0.9rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+  cursor: pointer;
+  margin-top: 1.2rem;
+  transition: all 0.3s ease-in-out;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+button:hover {
+  background: linear-gradient(90deg, #ffb86b, #ff8c42);
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(255, 184, 107, 0.5);
+}
+
+/* ------------------------------------------------------------ */
+/* ANIMACIONES */
+/* ------------------------------------------------------------ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ------------------------------------------------------------ */
+/* FOOTER */
+/* ------------------------------------------------------------ */
+footer {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.05em;
+}
+
+footer a {
+  color: #ffb86b;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #ffffff;
+}
+
+/* ------------------------------------------------------------ */
+/* RESPONSIVE */
+/* ------------------------------------------------------------ */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .links {
+    margin-top: 0.5rem;
+  }
+
+  .form-box {
+    padding: 2rem 1.5rem;
+  }
+}
+/* --- NUEVO BLOQUE PARA BOTÓN DE MESA --- */
+.mesa-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.btn-mesa {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(90deg, #ff8c42, #ffb86b);
+  color: #4a0b07;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-mesa:hover {
+  background: linear-gradient(90deg, #ffb86b, #ff8c42);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 184, 107, 0.4);
+}

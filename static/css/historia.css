@@ -1,0 +1,235 @@
+﻿/* ------------------------------------------------------------ */
+/* HISTORIA.CSS - Estilo visual coherente con RESERVA.CSS */
+/* ------------------------------------------------------------ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap');
+
+/* Fondo general */
+.bg-historia {
+  background-color: #E9E4C7;
+  background-image: url('../image/historia/fondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+  min-height: 100vh;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* ------------------------------------------------------------ */
+/* NAVBAR */
+/* ------------------------------------------------------------ */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.navbar .logo img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 2px solid #ffb86b;
+}
+
+.navbar .links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 0.8rem;
+  transition: all 0.3s ease;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.03em;
+}
+
+.navbar .links a:hover {
+  color: #ffb86b;
+  transform: translateY(-2px);
+}
+
+/* ------------------------------------------------------------ */
+/* USER ACTIONS (Copiado de RESERVA.CSS) */
+/* ------------------------------------------------------------ */
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.saludo {
+  color: #ffb86b;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+}
+
+/* BOTÓN IGUAL AL DE INICIO */
+.btn-accent {
+  background: linear-gradient(90deg, #ff8c42, #ffb86b);
+  color: #4a0b07;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  transition: all 0.3s ease-in-out;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+
+.btn-accent:hover {
+  background: linear-gradient(90deg, #ffb86b, #ff8c42);
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(255, 184, 107, 0.5);
+}
+
+/* ------------------------------------------------------------ */
+/* CONTENIDO PRINCIPAL */
+/* ------------------------------------------------------------ */
+.historia-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+}
+
+.historia-box {
+  background: rgba(72, 20, 17, 0.92);
+  border: 1px solid rgba(255, 200, 150, 0.1);
+  border-radius: 14px;
+  padding: 3rem;
+  max-width: 1000px;
+  width: 100%;
+  color: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  position: relative;
+  animation: fadeInUp 1s ease;
+}
+
+.historia-box::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 2px solid rgba(212, 179, 124, 0.9);
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.historia-texto {
+  flex: 1 1 400px;
+}
+
+.historia-texto h1 {
+  font-family: 'Cinzel', serif;
+  color: #ffb86b;
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.historia-texto p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #f1e1c1;
+}
+
+.resaltado {
+  color: #ffb86b;
+  font-weight: 700;
+}
+
+/* Imágenes */
+.historia-imagenes {
+  flex: 1 1 300px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.historia-imagenes img {
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid #ffb86b;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.historia-imagenes img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 184, 107, 0.4);
+}
+
+/* ------------------------------------------------------------ */
+/* FOOTER igual al de RESERVA */
+/* ------------------------------------------------------------ */
+footer {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.05em;
+}
+
+footer a {
+  color: #ffb86b;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #ffffff;
+}
+
+/* ------------------------------------------------------------ */
+/* Animaciones */
+/* ------------------------------------------------------------ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ------------------------------------------------------------ */
+/* Responsive */
+/* ------------------------------------------------------------ */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .links {
+    margin-top: 0.5rem;
+  }
+
+  .historia-box {
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+  }
+
+  .historia-imagenes {
+    grid-template-columns: 1fr;
+  }
+}

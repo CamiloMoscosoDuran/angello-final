@@ -1,0 +1,78 @@
+﻿{% extends "index.html" %}
+
+{% block title %}Carta - Pollos{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cartas.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="flex-grow bg-main bg-cartas min-h-screen flex flex-col">
+    <nav class="flex justify-between items-center p-4 bg-black bg-opacity-50 text-white shadow-lg sticky top-0 z-50">
+        <a href="{{ url_for('cartas') }}" class="text-orange-500 hover:text-white transition-colors font-bold text-lg">← Volver a la Carta</a>
+    </nav>
+
+    <div class="flex flex-col items-center justify-center p-8 space-y-8">
+        <h1 class="text-5xl font-cinzel text-white mb-4">Entradas</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl">
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">8</div>
+                <img src="{{ url_for('static', filename='image/carta-pollo/pollo1.jpg') }}" alt="Pan al Ajo" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Pan al Ajo</h3>
+                    <p>Delicioso pan tostado con mantequilla de ajo y perejil.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">12</div>
+                <img src="{{ url_for('static', filename='image/carta-pollo/pollo2.jpg') }}" alt="Pan al Ajo Especial" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Pan al Ajo Especial</h3>
+                    <p>Delicioso pan tostado con mantequilla de ajo y perejil, con un toque especial de queso.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">15</div>
+                <img src="{{ url_for('static', filename='image/carta-pollo/pollo3.jpg') }}" alt="Mac and Cheese" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Mac and Cheese</h3>
+                    <p>Tostadas con queso. Deliciosa pasta con queso gratinado, acompañada de una ensalada fresca.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">22</div>
+                <img src="{{ url_for('static', filename='image/carta-pollo/pollo1.jpg') }}" alt="Tabla de Quesos" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Tabla de Quesos</h3>
+                    <p>Salame, cabanossi, quesos, jamón, pecanas, aceitunas verdes, negras, pepperoni, aceite de oliva, pan.</p>
+                </div>
+            </div>
+
+            <!-- Información adicional sobre horarios y reservas -->
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative md:col-span-2">
+                <div class="p-6 text-white text-center">
+                    <h3 class="text-2xl font-bold mb-4">Información</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">Horario de Atención</h4>
+                            <p>Martes a Domingo</p>
+                            <p>1:00 A 11:00 PM</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">Reservas</h4>
+                            <p>924 392 113</p>
+                            <p>Jr Grau 891</p>
+                            <p>San Vicente de Cañete</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

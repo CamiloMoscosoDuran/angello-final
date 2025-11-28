@@ -1,0 +1,224 @@
+/* ========================= */
+/* Fuentes */
+@import url('[https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap](https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap)');
+@import url('[https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap](https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap)');
+
+/* ========================= */
+/* Fondo general */
+.bg-cartas {
+background-color: #E9E4C7;
+background-image: url('../image/carta/fondo.png');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+min-height: 100vh;
+font-family: 'Open Sans', sans-serif;
+padding-bottom: 50px;
+}
+
+/* ========================= */
+/* Navbar */
+.navbar {
+display:flex; justify-content:space-between; align-items:center;
+padding:1rem 2rem; background:rgba(0,0,0,0.6); color:#fff;
+position:sticky; top:0; z-index:50;
+}
+.navbar .logo img { height:50px; width:50px; border-radius:50%; border:2px solid #ffb86b; }
+.links a { color:white; text-decoration:none; margin:0 0.8rem; font-family:'Cinzel', serif; }
+.btn-accent { background: linear-gradient(90deg,#ff8c42,#ffb86b); color:#4a0b07; padding:0.6rem 1rem; border-radius:8px; font-family:'Cinzel', serif; }
+
+/* ========================= */
+/* Contenedor principal */
+.main-wrapper { padding:3rem 1rem; display:flex; justify-content:center; }
+.content-box {
+background: rgba(72,20,17,0.92); border-radius:14px; padding:2.5rem;
+max-width:1100px; color:#fff; box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* ========================= */
+/* Tarjetas de carta */
+.card-grid { display:flex; flex-wrap:wrap; gap:1.5rem; margin-top:1rem; }
+.card { background: rgba(0,0,0,0.35); border-radius:12px; overflow:hidden; transition: transform 0.3s, box-shadow 0.3s; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0,0,0,0.5); }
+.card-img img { width:100%; height:150px; object-fit:cover; }
+.card-body { padding:0.8rem; }
+.card-body h3 { color:#ffb86b; font-family:'Cinzel', serif; font-size:1.2rem; }
+
+/* ========================= */
+/* Carrito */
+.cart-item {
+display:flex; gap:1rem; padding:1rem;
+border-radius:12px; background: rgba(0,0,0,0.35);
+margin-bottom:1rem; align-items:center;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.cart-item:hover { transform: translateY(-4px); box-shadow: 0 15px 25px rgba(0,0,0,0.5); }
+
+.ci-left img { width:110px; height:90px; object-fit:cover; border-radius:10px; border:2px solid rgba(255,184,107,0.15); }
+
+.btn-remove-item {
+background: #ff6b6b; color:#fff; border:none; border-radius:8px; padding:5px 10px; cursor:pointer;
+transition: background 0.3s ease;
+}
+.btn-remove-item:hover { background: #ff3b3b; }
+
+.tabla-carrito {
+width:100%; background: rgba(0,0,0,0.4); border-radius:14px; padding:20px; color:#fff;
+transition: transform 0.3s ease;
+}
+.tabla-carrito th { padding:10px; text-align:left; }
+.tabla-carrito td { padding:10px; }
+
+.total-general { font-size:1.5rem; color:#ffb86b; font-weight:700; margin-top:1rem; }
+
+/* Botones de pago y añadir */
+.btn-gold, .btn-pagar, .btn-add {
+background: linear-gradient(90deg,#ff8c42,#ffb86b);
+color:#4a0b07; padding:0.8rem 1.2rem; border-radius:12px;
+font-weight:700; text-decoration:none; cursor:pointer; border:none;
+transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-gold:hover, .btn-pagar:hover, .btn-add:hover {
+transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+/* Responsive */
+@media (max-width:900px){
+.cart-item { flex-direction:column; align-items:flex-start; }
+.ci-actions { margin-left:0; margin-top:8px; }
+.card-grid { flex-direction:column; }
+}
+
+/* ========================= */
+/* Estilos para la página de pago */
+/* Contenedor principal de pago */
+.pago-box {
+	max-width:900px;
+	margin:0 auto;
+	padding:2rem;
+}
+
+.label-direccion { display:block; color:#fff; margin-bottom:0.5rem; font-weight:600; }
+.input-direccion { width:100%; padding:0.8rem 1rem; border-radius:8px; border:1px solid rgba(255,255,255,0.12); margin-bottom:1rem; background:rgba(255,255,255,0.03); color:#fff; }
+
+/* Caja que contiene las dos opciones y la vista previa central */
+.metodo-cuadro{
+	display:grid;
+	grid-template-columns: 1fr 420px 1fr;
+	gap:1rem;
+	align-items:center;
+	justify-items:center;
+	position:relative; /* para posicionar la imagen/QR centrada */
+	padding:1.5rem 0 3.5rem; /* espacio inferior para el botón confirmar */
+}
+
+.metodo-tarjeta{
+	width:100%;
+	max-width:260px;
+	min-height:160px;
+	background: rgba(0,0,0,0.35);
+	border-radius:12px;
+	padding:1rem;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+	cursor:pointer;
+	transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.25s ease;
+	border:2px solid transparent;
+}
+
+.metodo-tarjeta p { color:#ffb86b; font-weight:700; margin:8px 0; }
+
+.metodo-tarjeta:hover{ transform: translateY(-6px); box-shadow:0 18px 30px rgba(0,0,0,0.45); }
+.metodo-tarjeta.selected{ border-color: rgba(255,184,107,0.6); box-shadow:0 22px 40px rgba(0,0,0,0.55); }
+
+/* Imagen / QR - por defecto oculta. Se posiciona absoluta y centrada dentro de .metodo-cuadro */
+
+/* Miniaturas dentro de las tarjetas */
+.metodo-tarjeta .mini-img{
+	width:120px;
+	height:120px;
+	object-fit:cover;
+	border-radius:8px;
+	box-shadow:0 8px 18px rgba(0,0,0,0.45);
+	margin-top:8px;
+	background:#fff;
+	padding:6px;
+}
+
+/* Zona de vista previa central */
+.metodo-preview{
+	width:420px;
+	max-width:90%;
+	min-height:220px;
+	background: rgba(255,255,255,0.03);
+	border-radius:12px;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+	padding:1rem;
+	position:relative;
+}
+
+.preview-inner img#preview-img{
+	width:360px;
+	max-width:100%;
+	height:auto;
+	border-radius:10px;
+	box-shadow:0 12px 30px rgba(0,0,0,0.6);
+	background:#fff;
+	padding:8px;
+}
+
+/* Botón confirmar centralizado dentro de la preview */
+#preview-confirm, .metodo-preview .btn-confirmar{
+	margin-top:12px;
+	padding:0.9rem 1.6rem;
+	border-radius:10px;
+	background: linear-gradient(90deg,#ff8c42,#ffb86b);
+	color:#4a0b07;
+	font-weight:700;
+	border:none;
+	cursor:pointer;
+	box-shadow:0 10px 25px rgba(0,0,0,0.45);
+}
+
+
+/* Ajustes responsive: en pantallas pequeñas stack vertical y vista previa encima */
+@media (max-width:900px){
+	.metodo-cuadro{ grid-template-columns: 1fr; padding-bottom:1.2rem; }
+	.metodo-tarjeta{ max-width:100%; }
+	.metodo-tarjeta .mini-img{ display:block; margin:0 auto 1rem; }
+	.metodo-preview{ order:-1; width:100%; margin-bottom:1rem; }
+	#preview-confirm{ display:block; }
+}
+
+/* ========================= */
+/* Pago: microinteracciones y animaciones */
+/* ========================= */
+
+/* Pop-in para la preview central */
+.metodo-preview.show{ animation: popIn 360ms cubic-bezier(.2,.9,.2,1) both; }
+@keyframes popIn{ 0%{ transform: scale(0.96); opacity:0; } 60%{ transform: scale(1.02); opacity:1; } 100%{ transform: scale(1); opacity:1; } }
+
+/* Miniatura con micro-sombra y hover suave */
+.metodo-tarjeta .mini-img{ transition: transform 260ms cubic-bezier(.2,.9,.2,1), box-shadow 260ms ease; }
+.metodo-tarjeta .mini-img:hover{ transform: translateY(-6px) scale(1.04); box-shadow: 0 14px 32px rgba(0,0,0,0.5); }
+
+/* Selected tarjeta gets subtle glow using palette */
+.metodo-tarjeta.selected{ box-shadow: 0 24px 48px rgba(255,168,80,0.12), 0 6px 18px rgba(0,0,0,0.45); transform: translateY(-8px) scale(1.01); border-color: rgba(255,184,107,0.9); }
+
+/* Confirm button hover and active */
+#preview-confirm{ transition: transform 200ms cubic-bezier(.2,.9,.2,1), box-shadow 200ms ease, opacity 160ms ease; }
+#preview-confirm:disabled{ opacity:0.6; pointer-events:none; transform: translateY(0); box-shadow:none; }
+#preview-confirm:hover:not(:disabled){ transform: translateY(-4px); box-shadow: 0 14px 30px rgba(0,0,0,0.45); }
+
+/* small label under preview for guidance */
+.preview-caption{ font-size:0.95rem; color:#e9e4c7; margin-top:10px; }
+
+@media (prefers-reduced-motion: reduce){
+  .metodo-preview.show, .metodo-tarjeta .mini-img, .metodo-tarjeta.selected, #preview-confirm{ animation:none; transition:none !important; }
+}
+
