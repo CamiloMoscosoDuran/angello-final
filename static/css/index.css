@@ -1,0 +1,55 @@
+﻿/* static/css/index.css - backgrounds específicos para cada página */
+
+:root{
+    --bg-overlay-default: rgba(0,0,0,0.15);
+    --bg-overlay-inicio: rgba(0,0,0,0.22);
+}
+
+.bg-main {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative; /* necesario para overlays */
+}
+
+/* Overlay genérico para mejorar contraste sobre imágenes */
+.bg-main::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--bg-overlay-default);
+    pointer-events: none;
+}
+
+/* Clase destinada para override de overlay en caso de necesitarse */
+/* Si quieres activarla, añade la clase `bg-inicio-overlay` al contenedor junto a `bg-main`. */
+
+/* Clase para el fondo de la página de inicio — usa gradiente de color en lugar de imagen */
+.bg-inicio {
+    background-image: linear-gradient(180deg, #7a1f1a 0%, #5f1815 100%);
+}
+
+/* Clase para la imagen de fondo de la página de cartas */
+.bg-cartas {
+    background-image: url('../image/fondo_cartas.jpg');
+}
+
+/* Clase para la imagen de fondo de la página de historia */
+.bg-historia {
+    background-image: url('../image/fondo_historia.jpg');
+}
+
+/* Clase para la imagen de fondo del formulario/suscripción */
+.bg-formulario {
+    background-image: url('../image/fondo_formulario.jpg');
+}
+
+ /* Clase para la imagen de fondo de la confirmación de suscripción */
+.bg-confirmacion {
+    background-image: url('../image/fondo_confirmacion.jpg');
+}
+
+/* Utilidades para asegurar correcto apilado del contenido sobre el fondo */
+.bg-main > * { position: relative; z-index: 1; }
+.bg-main img { display:block; }
+

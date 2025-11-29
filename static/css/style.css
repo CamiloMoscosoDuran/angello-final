@@ -1,0 +1,83 @@
+﻿/* static/css/style.css */
+
+/* --- Variables de Color --- */
+:root {
+    --color-fondo-oscuro: #1a1a1a;
+    --color-primario: #cc0000;      /* Rojo de acción (Únete ahora) */
+    --color-secundario: #ff4500;    /* Naranja/Acento */
+    --color-texto-principal: #f0f0f0;
+    --color-contenedor: rgba(0, 0, 0, 0.7); /* Contenedores principales con transparencia */
+    --color-footer-bg: #4a130f; 
+    --color-cream-text: #E9E4C7; 
+}
+
+/* Clase para aplicar el fondo oscuro en el footer */
+.bg-footer-custom {
+    background-color: var(--color-footer-bg);
+}
+
+/* Clase para aplicar el color crema a títulos o elementos de acento */
+.text-cream-text {
+    color: var(--color-cream-text);
+}
+
+/* --- Estilos Globales --- */
+body {
+    font-family: 'Georgia', serif; 
+    background-color: var(--color-fondo-oscuro);
+    color: var(--color-texto-principal);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Clases de Componentes Personalizados --- */
+
+/* Contenedor principal de cada página (antes tenía la imagen de fondo) */
+.page-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem; /* Pequeño padding general */
+}
+
+/* Contenedor de contenido central (simula la caja oscura sobre el fondo) */
+.content-box {
+    background-color: var(--color-contenedor);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Botones de Acción (ÚNETE AHORA) */
+.btn-primary {
+    background-color: var(--color-primario);
+    transition: background-color 0.3s;
+}
+.btn-primary:hover {
+    background-color: #a30000; /* Rojo más oscuro al pasar el ratón */
+}
+
+/* Botones de Acento/Secundario (Reservaciones) */
+.btn-secondary {
+    border: 2px solid var(--color-secundario);
+    color: var(--color-secundario);
+    transition: all 0.3s;
+}
+.btn-secondary:hover {
+    background-color: var(--color-secundario);
+    color: white;
+}
+
+/* --- Clases de Formulario --- */
+.input-field {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--color-secundario);
+    color: var(--color-texto-principal);
+    /* Tailwind: focus:ring-2 focus:ring-orange-400 focus:border-transparent */
+}
+
+/* --- Estilos para la barra de navegación/footer (transparencia) --- */
+.nav-footer-bg {
+    background-color: rgba(0, 0, 0, 0.85); /* Un poco menos de transparencia */
+}

@@ -1,0 +1,446 @@
+/* navbar-responsive.css
+   Estilos para la cabecera responsiva usada por `menu.js`.
+   - Muestra logo + 2-3 botones principales en escritorio
+   - Muestra botón hamburguesa y menú desplegable en móvil
+*/
+
+nav.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: rgba(10, 10, 10, 0.6);
+  color: #fff;
+  position: relative;
+  z-index: 40;
+}
+
+nav.navbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+nav.navbar .logo img {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+
+nav.navbar .logo span {
+  font-weight: 700;
+  color: #ffd78a;
+  font-size: 1.125rem;
+}
+
+nav.navbar .links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+nav.navbar .links a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.45rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+nav.navbar .links a:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+nav.navbar .user-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.btn-accent {
+  background: #ffb86b;
+  color: #0b0b0b;
+  padding: 0.45rem 0.8rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.nav-toggle {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: #fff;
+  padding: 0.35rem;
+  display: none; /* mostrado por menu.js según viewport */
+  cursor: pointer;
+}
+
+.nav-mobile-menu {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  background: rgba(8,8,8,0.95);
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  overflow: hidden;
+  padding: 0.6rem;
+  display: none; /* controlado por menu.js */
+  flex-direction: column;
+}
+
+.nav-mobile-menu a {
+  color: #fff;
+  padding: 0.6rem 0.5rem;
+  display: block;
+  border-radius: 6px;
+}
+
+.nav-mobile-menu a:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+/* Small adjustments: ensure layout doesn't break on very small screens */
+@media (max-width: 420px) {
+  nav.navbar .logo img { height: 36px; }
+  nav.navbar .logo span { display: none; }
+  .btn-accent { padding: 0.35rem 0.5rem; font-size: 0.9rem; }
+}
+
+/* Suggestion for main-link: mark first two as visible on tablet/desktop */
+/* menu.js will hide/show based on class 'main-link' */
+.main-link {
+  font-weight: 600;
+}
+/* ------------------------------------------------------------ */
+/* NAVBAR RESPONSIVO - CSS COMÚN PARA TODAS LAS PÁGINAS */
+/* ------------------------------------------------------------ */
+
+/* FUENTES */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Open+Sans:wght@400;500&display=swap');
+
+/* ------------------------------------------------------------ */
+/* NAVBAR BASE */
+/* ------------------------------------------------------------ */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 1rem 2rem;
+    backdrop-filter: blur(6px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    position: relative;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.logo img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 2px solid #ffb86b;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.05);
+}
+
+.logo span {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #ffb86b;
+    letter-spacing: 0.1em;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.links a {
+    color: white;
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.04em;
+    transition: all 0.3s ease;
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    font-weight: 500;
+    position: relative;
+}
+
+.links a::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #ffb86b;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.links a:hover::before {
+    width: 100%;
+}
+
+.links a:hover {
+    color: #ffb86b;
+    background: rgba(255, 184, 107, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Botones principales que siempre se muestran en desktop/tablet */
+.links .main-link {
+    /* Remover background y border para eliminar rectángulos */
+    background: transparent;
+    border: none;
+    font-weight: 600;
+}
+
+.links .main-link:hover {
+    /* Solo efecto de color en hover, sin background */
+    color: #ffb86b;
+    text-shadow: 0 0 10px rgba(255, 184, 107, 0.5);
+}
+
+/* ------------------------------------------------------------ */
+/* USER ACTIONS */
+/* ------------------------------------------------------------ */
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.saludo {
+    color: #ffb86b;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* BOTÓN ACCENT */
+.btn-accent {
+    background: linear-gradient(90deg, #ff8c42, #ffb86b);
+    color: #4a0b07;
+    border: none;
+    padding: 0.7rem 1.4rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-family: 'Cinzel', serif;
+    font-size: 1.05rem;
+    transition: all 0.3s ease-in-out;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(255, 140, 66, 0.3);
+}
+
+.btn-accent:hover {
+    background: linear-gradient(90deg, #ffb86b, #ff8c42);
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(255, 184, 107, 0.5);
+}
+
+/* ------------------------------------------------------------ */
+/* MENÚ HAMBURGUESA */
+/* ------------------------------------------------------------ */
+.nav-toggle {
+    display: none;
+    background: rgba(255, 184, 107, 0.1) !important;
+    border: 2px solid rgba(255, 184, 107, 0.3) !important;
+    border-radius: 8px !important;
+    padding: 8px 10px !important;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #ffb86b;
+}
+
+.nav-toggle:hover {
+    background: rgba(255, 184, 107, 0.2) !important;
+    border-color: rgba(255, 184, 107, 0.5) !important;
+    transform: scale(1.05);
+    box-shadow: 0 2px 10px rgba(255, 184, 107, 0.3);
+}
+
+.nav-toggle svg {
+    transition: transform 0.3s ease;
+}
+
+.nav-toggle[aria-expanded="true"] svg {
+    transform: rotate(90deg);
+}
+
+/* ------------------------------------------------------------ */
+/* MENÚ MÓVIL */
+/* ------------------------------------------------------------ */
+.nav-mobile-menu {
+    background: rgba(0, 0, 0, 0.95) !important;
+    border: 1px solid rgba(255, 184, 107, 0.3) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: blur(10px) !important;
+    min-width: 200px !important;
+    padding: 1rem !important;
+    position: absolute !important;
+    z-index: 9999 !important;
+}
+
+.nav-mobile-menu a,
+.nav-mobile-menu button,
+.nav-mobile-menu .saludo {
+    display: block !important;
+    padding: 0.8rem 1rem !important;
+    margin: 0.2rem 0 !important;
+    color: white !important;
+    text-decoration: none !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    font-family: 'Cinzel', serif !important;
+    font-weight: 500 !important;
+    background: transparent !important;
+    border: none !important;
+    width: 100% !important;
+    text-align: left !important;
+    cursor: pointer !important;
+}
+
+.nav-mobile-menu a:hover,
+.nav-mobile-menu button:hover {
+    background: rgba(255, 184, 107, 0.2) !important;
+    color: #ffb86b !important;
+    transform: translateX(5px) !important;
+}
+
+.nav-mobile-menu .btn-accent {
+    background: linear-gradient(90deg, #ff8c42, #ffb86b) !important;
+    color: #4a0b07 !important;
+    margin-top: 0.5rem !important;
+    text-align: center !important;
+    font-weight: 700 !important;
+}
+
+.nav-mobile-menu .btn-accent:hover {
+    background: linear-gradient(90deg, #ffb86b, #ff8c42) !important;
+    transform: scale(1.02) !important;
+}
+
+/* ------------------------------------------------------------ */
+/* RESPONSIVE */
+/* ------------------------------------------------------------ */
+
+/* En pantallas medianas y grandes (tablet y desktop) */
+@media (min-width: 769px) {
+    .nav-toggle {
+        display: block !important;
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    /* En tablet/desktop: ocultar algunos enlaces, mantener solo los principales */
+    .links a:not(.main-link) {
+        display: none;
+    }
+    
+    .links .main-link {
+        display: block;
+        background: transparent;
+        border: none;
+    }
+}
+
+/* En pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem;
+        text-align: left;
+    }
+    
+    .logo {
+        flex-shrink: 0;
+    }
+    
+    /* Ocultar texto del logo en móvil para ahorrar espacio */
+    .logo span {
+        display: none;
+    }
+
+    /* Ocultar enlaces principales en móvil */
+    .links {
+        display: none;
+    }
+    
+    .nav-toggle {
+        display: block !important;
+        position: static;
+        margin-left: auto;
+    }
+
+    /* Ocultar acciones de usuario en móvil */
+    .user-actions {
+        display: none;
+    }
+    
+    /* El menú móvil ocupará más espacio en pantallas pequeñas */
+    .nav-mobile-menu {
+        right: 1rem !important;
+        left: 1rem !important;
+        min-width: auto !important;
+        max-width: calc(100vw - 2rem) !important;
+    }
+}
+
+/* En pantallas muy grandes (desktop) */
+@media (min-width: 1200px) {
+    .navbar {
+        padding: 1rem 3rem;
+    }
+    
+    .nav-toggle {
+        display: none !important;
+    }
+    
+    .links a {
+        display: block !important;
+    }
+}
+
+/* ------------------------------------------------------------ */
+/* ANIMACIONES */
+/* ------------------------------------------------------------ */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.nav-mobile-menu {
+    animation: slideDown 0.3s ease-out;
+}

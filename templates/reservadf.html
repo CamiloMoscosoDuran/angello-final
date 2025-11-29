@@ -1,0 +1,116 @@
+{% extends "index.html" %}
+
+{% block title %}Reservaciones - Restaurante Angello{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/Reserva.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/Mesa.css') }}">
+<!-- Animaciones reutilizables del login -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login-animations.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="bg-reserva">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      <a href="{{ url_for('inicio') }}">
+  <img src="{{ url_for('static', filename='image/carta/logo.png') }}" alt="Logo Angello">
+      </a>
+    </div>
+
+    <div class="links">
+      <a href="{{ url_for('inicio') }}">Inicio</a>
+      <a href="{{ url_for('cartas') }}">NuestraCarta</a>
+      <a href="{{ url_for('historia') }}">Nuestra Historia</a>
+      <a href="{{ url_for('promociones') }}">Promociones</a>
+      <a href="{{ url_for('reserva') }}" class="activo">Reservaciones</a>
+      <a href="{{ url_for('delivery') }}">Delivery</a>
+    </div>
+
+    <div class="user-actions">
+      {% if loggedin %}
+      <a href="{{ url_for('logout') }}" class="btn-accent">CERRAR SESIÓN</a>
+      {% else %}
+      <a href="{{ url_for('inicio_secion') }}" class="btn-accent">INICIAR SESIÓN</a>
+      {% endif %}
+    </div>
+  </header>
+
+  <!-- FORMULARIO -->
+  <div class="container">
+    <div class="form-box animate-fadeInUp" id="loginBox">
+      <h1 class="animate-slideInLeft">Reserva tu Mesa</h1>
+      <p class="animate-fadeIn">Disfruta de una experiencia gastronómica inolvidable en Angello.<br>
+        Completa el formulario y asegura tu lugar con nosotros.</p>
+
+      {% if message %}
+      <p class="error">{{ message }}</p>
+      {% endif %}
+
+      <form method="POST" action="{{ url_for('reserva') }}" id="loginForm">
+        <div class="mesa-selector input-group animate-slideInLeft">
+          <label for="mesaSeleccionada">Mesa a reservar</label>
+          <button type="button" class="btn-mesa" id="abrirMesa">
+            Elegir mesa →
+          </button>
+          <span class="input-highlight"></span>
+        </div>
+
+        <input type="hidden" id="mesaSeleccionada" name="mesaSeleccionada">
+
+        <div class="input-group animate-slideInLeft">
+          <label for="nombre">Nombre completo</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required class="form-input">
+          <span class="input-highlight"></span>
+        </div>
+
+        <div class="input-group animate-slideInLeft">
+          <label for="celular">Celular</label>
+          <input type="tel" id="celular" name="celular" placeholder="Ejemplo: 987654321" required class="form-input">
+          <span class="input-highlight"></span>
+        </div>
+
+        <div class="input-group animate-slideInLeft">
+          <label for="fecha">Fecha de la reserva</label>
+          <input type="date" id="fecha" name="fecha" required class="form-input">
+          <span class="input-highlight"></span>
+        </div>
+
+        <div class="input-group animate-slideInLeft">
+          <label for="hora">Hora</label>
+          <input type="time" id="hora" name="hora" required class="form-input">
+          <span class="input-highlight"></span>
+        </div>
+
+        <div class="input-group animate-slideInLeft">
+          <label for="cantidad_personas">Cantidad de personas</label>
+          <input type="number" id="cantidad_personas" name="cantidad_personas" min="1" max="20" required class="form-input">
+          <span class="input-highlight"></span>
+        </div>
+
+        <div class="input-group animate-slideInLeft">
+          <label for="mensaje">Mensaje o indicaciones especiales</label>
+          <textarea id="mensaje" name="mensaje" rows="3" placeholder="Ejemplo: Mesa cerca de la ventana" class="form-input"></textarea>
+          <span class="input-highlight"></span>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn-submit animate-bounceIn">
+          <span class="btn-text">Confirmar Reserva</span>
+          <div class="btn-loading" id="btnLoading">
+            <div class="spinner"></div>
+            <span>Enviando...</span>
+          </div>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Incluye la ventana de mesas -->
+{% include "mesa.html" %}
+
+<script src="{{ url_for('static', filename='js/mesa.js') }}"></script>
+<script src="{{ url_for('static', filename='js/login-animations.js') }}"></script>
+{% endblock %}

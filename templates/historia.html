@@ -1,0 +1,78 @@
+﻿{% extends "index.html" %}
+
+{% block title %}Nuestra Historia - Restaurante Angello{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/historia.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="bg-historia">
+
+    <!-- NAVBAR igual al de RESERVA -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="{{ url_for('inicio') }}">
+                <img src="{{ url_for('static', filename='image/historia/logo.png') }}" alt="Logo Angello">
+            </a>
+        </div>
+        <div class="links">
+            <a href="{{ url_for('inicio') }}">Inicio</a>
+            <a href="{{ url_for('cartas') }}">Nuestra Carta</a>
+            <a href="{{ url_for('historia') }}">Nuestra Historia</a>
+            {% if loggedin %}
+                <a href="{{ url_for('promociones') }}">Promociones</a>
+                <a href="{{ url_for('reserva') }}">Reservaciones</a>
+                <a href="{{ url_for('delivery') }}">Delivery</a>
+            {% else %}
+                <a href="{{ url_for('inicio_secion') }}">Promociones</a>
+                <a href="{{ url_for('inicio_secion') }}">Reservaciones</a>
+                <a href="{{ url_for('inicio_secion') }}">Delivery</a>
+            {% endif %}
+
+        </div>
+
+        <div class="user-actions">
+            {% if loggedin %}
+                <a href="{{ url_for('logout') }}" class="btn-accent">Cerrar sesión</a>
+            {% else %}
+                <a href="{{ url_for('inicio_secion') }}" class="btn-accent">Iniciar Sesión</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <section class="historia-container">
+        <div class="historia-box">
+            <div class="historia-texto">
+                <h1>Restaurante Angello</h1>
+                <p>
+                    Tenemos más de <span class="resaltado">15 años de trayectoria</span> ofreciendo la mejor comida,
+                    combinando dos culturas: la italiana y la peruana.  
+                    Nos especializamos en pizzas artesanales, pastas frescas y nuestro plato estrella:
+                    el pollo a la leña.
+                </p>
+                <p>
+                    En Angello, cada plato es una experiencia que mezcla tradición, sabor y pasión culinaria.
+                    Ven y comparte momentos inolvidables con tu familia y amigos.
+                </p>
+            </div>
+            <div class="historia-imagenes">
+                <img src="{{ url_for('static', filename='image/historia/pizza.png') }}" alt="Pizza artesanal">
+                <img src="{{ url_for('static', filename='image/historia/pollo.png') }}" alt="Pollo a la leña">
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER igual al de reserva -->
+    <footer>
+        <p>© 2025 Restaurante Angello - Todos los derechos reservados.</p>
+        <div class="sociales">
+            <a href="https://wa.me/XXXXXXXXXX" target="_blank">WhatsApp</a> |
+            <a href="https://facebook.com/tupagina" target="_blank">Facebook</a>
+        </div>
+    </footer>
+
+</div>
+{% endblock %}
+

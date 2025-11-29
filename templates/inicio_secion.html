@@ -1,0 +1,140 @@
+﻿{% extends "index.html" %}
+
+{% block title %}Iniciar Sesión - Restaurante Angello{% endblock %}
+
+{% block extra_head %}
+<!-- Fuentes y estilos coherentes con todo el sitio -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+<!-- Font Awesome para iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<!-- Estilos principales -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/inicio_secion.css') }}">
+<!-- Animaciones específicas del login -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login-animations.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="bg-login">
+
+    <!-- 🔹 NAVBAR (idéntico al de RESERVA) -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="{{ url_for('inicio') }}">
+                <img src="{{ url_for('static', filename='image/inicio/logo.png') }}" alt="Logo Angello">
+            </a>
+            <span>Angello</span>
+        </div>
+
+        <div class="links">
+            <a href="{{ url_for('inicio') }}" class="main-link">Inicio</a>
+            <a href="{{ url_for('cartas') }}" class="main-link">Nuestra Carta</a>
+            <a href="{{ url_for('historia') }}">Nuestra Historia</a>
+            <a href="{{ url_for('inicio_secion') }}">Promociones</a>
+            <a href="{{ url_for('inicio_secion') }}">Reservaciones</a>
+            <a href="{{ url_for('inicio_secion') }}">Delivery</a>
+        </div>
+
+        <div class="user-actions">
+            {% if loggedin %}
+                <span class="saludo">👋 Hola, {{ nombre }}</span>
+                <a href="{{ url_for('logout') }}" class="btn-accent">Cerrar sesión</a>
+            {% else %}
+                <a href="{{ url_for('inicio_secion') }}" class="btn-accent">Iniciar Sesión</a>
+            {% endif %}
+        </div>
+    </nav>
+
+
+        <!-- 🔸 MENSAJE FLASH DE ÉXITO REGISTRO -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message animate-fadeInUp {{ category }}" role="alert" style="margin: 1rem auto; max-width: 420px;">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- 🔸 FORMULARIO DE LOGIN -->
+        <div class="login-container" id="loginContainer">
+                <div class="login-box animate-fadeInUp" id="loginBox">
+                        <h1 class="animate-slideInLeft">Bienvenido</h1>
+                        <p class="animate-slideInRight">Accede a tu cuenta Angello.</p>
+
+            <form action="{{ url_for('inicio_secion') }}" method="POST" id="loginForm" class="animate-form">
+                <div class="input-group animate-slideInLeft" style="animation-delay: 0.3s;">
+                    <label for="correo">Correo Electrónico</label>
+                    <input type="email" name="correo" id="correo" required placeholder="tu.correo@ejemplo.com" class="form-input">
+                    <span class="input-highlight"></span>
+                </div>
+
+                <div class="input-group animate-slideInRight" style="animation-delay: 0.5s;">
+                    <label for="contrasena">Contraseña</label>
+                    <div style="position: relative; display: inline-block; width: 100%;">
+                        <input type="password" name="contrasena" id="contrasena" required placeholder="••••••••" class="form-input">
+                        <span class="eye-toggle" id="eyeToggle" onclick="togglePassword()" style="
+                            position: absolute;
+                            right: 12px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            cursor: pointer;
+                            font-size: 16px;
+                            color: rgba(255,255,255,0.7);
+                            user-select: none;
+                        ">👁️</span>
+                    </div>
+                    <span class="input-highlight"></span>
+                </div>
+
+                <button type="submit" class="btn-submit animate-bounceIn" style="animation-delay: 0.7s;" id="submitBtn">
+                    <span class="btn-text">Iniciar Sesión</span>
+                    <div class="btn-loading" id="btnLoading">
+                        <div class="spinner"></div>
+                        <span>Iniciando...</span>
+                    </div>
+                </button>
+            </form>
+
+            <div class="register-link animate-fadeIn" style="animation-delay: 0.9s;">
+                <p>¿No tienes cuenta?
+                    <a href="{{ url_for('registro') }}" class="register-btn">Regístrate aquí</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🔹 FOOTER -->
+    <footer>
+        <p>© 2025 Restaurante Angello - Todos los derechos reservados.</p>
+        <div>
+            <a href="https://wa.me/XXXXXXXXXX" target="_blank">WhatsApp</a> |
+            <a href="https://facebook.com/tupagina" target="_blank">Facebook</a>
+        </div>
+    </footer>
+</div>
+
+<!-- Scripts para animaciones DOM -->
+<script src="{{ url_for('static', filename='js/password-toggle.js') }}"></script>
+<script src="{{ url_for('static', filename='js/login-animations.js') }}"></script>
+<script>
+    // Auto-animar y remover flash message de registro exitoso
+    document.addEventListener('DOMContentLoaded', function(){
+        const flashes = document.querySelectorAll('.flash-message.success, .flash-message.info');
+        if (!flashes || flashes.length === 0) return;
+
+        flashes.forEach((flash) => {
+            // añadir un pequeño brillo al texto
+            flash.style.textShadow = '0 2px 10px rgba(255, 200, 120, 0.6)';
+
+            // aparecer ya animado por CSS; esperar 5s y luego hacer salida suave
+            setTimeout(() => {
+                flash.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                flash.style.opacity = '0';
+                flash.style.transform = 'translateY(-10px) scale(0.98)';
+                setTimeout(() => flash.remove(), 700);
+            }, 5000);
+        });
+    });
+</script>
+{% endblock %}
