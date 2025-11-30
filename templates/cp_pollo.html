@@ -1,0 +1,493 @@
+{% extends "index.html" %}
+
+{% block title %}Carta - Pollos{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/inicio_premium.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/carta.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/carrito-flotante.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="{{ url_for('static', filename='js/carrito.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/carrito-flotante.js') }}" defer></script>
+<style>
+/* ESTILOS PREMIUM PARA CONTENEDORES DE PRODUCTOS */
+.premium-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 184, 107, 0.2);
+}
+
+.premium-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(255, 184, 107, 0.2), 0 0 0 1px rgba(255, 184, 107, 0.3);
+}
+
+.card-image-container {
+    position: relative;
+    height: 280px;
+    overflow: hidden;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.premium-card:hover .card-image {
+    transform: scale(1.1);
+}
+
+.price-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #FF8C42, #FFB86B);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(255, 140, 66, 0.4);
+    z-index: 10;
+}
+
+.price-badge.popular {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    animation: pulse 2s infinite;
+}
+
+.price-currency {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.price-amount {
+    font-size: 1.3rem;
+    font-weight: 900;
+    margin-left: 2px;
+}
+
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    padding: 30px 20px 20px;
+    z-index: 5;
+}
+
+.category-tag {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.combo-tag { background: linear-gradient(135deg, #FF8C42, #FFB86B); }
+.family-tag { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+.drink-tag { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+.cocktail-tag { background: linear-gradient(135deg, #27ae60, #2ecc71); }
+
+.popular-badge {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    animation: bounce 2s infinite;
+}
+
+.card-content {
+    padding: 30px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #8B4513;
+    line-height: 1.2;
+    margin: 0;
+    flex: 1;
+}
+
+.rating-stars {
+    display: flex;
+    gap: 2px;
+    margin-left: 10px;
+}
+
+.star {
+    color: #FFB86B;
+    font-size: 1rem;
+}
+
+.card-description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+.card-features {
+    margin-bottom: 25px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.feature-item i {
+    color: #FF8C42;
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.premium-button {
+    width: 100%;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #FF8C42, #FFB86B);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 6px 20px rgba(255, 140, 66, 0.3);
+}
+
+.premium-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 140, 66, 0.5);
+    background: linear-gradient(135deg, #e67e22, #f39c12);
+}
+
+.premium-button.popular {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.premium-button.popular:hover {
+    background: linear-gradient(135deg, #c0392b, #a93226);
+}
+
+/* ANIMACIONES */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-4px); }
+    60% { transform: translateY(-2px); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .premium-card {
+        margin-bottom: 20px;
+    }
+    
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .rating-stars {
+        margin-left: 0;
+    }
+    
+    .card-title {
+        font-size: 1.2rem;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="bg-inicio-premium min-h-screen">
+    <!-- NAVEGACIÓN MEJORADA -->
+    <nav class="navbar" style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(30, 30, 30, 0.8)); backdrop-filter: blur(10px); border-bottom: 2px solid #FFB86B;">
+        <div class="logo">
+            <a href="{{ url_for('inicio') }}">
+                <img src="{{ url_for('static', filename='image/inicio/logo.png') }}" alt="Logo Angello">
+            </a>
+            <span>Angello</span>
+        </div>
+        
+        <div class="flex items-center space-x-6">
+            <a href="{{ url_for('promociones') }}" class="text-white hover:text-orange-400 transition-colors font-semibold" style="font-family: 'Open Sans', sans-serif;">← Volver a la Carta</a>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="container">
+        <div class="hero-content">
+            <!-- HEADER SECTION -->
+            <div class="hero-card text-center mb-8">
+                <h1 style="font-family: 'Cinzel', serif; color: #ffb86b; font-size: 2.5rem; margin-bottom: 0.5rem;">Especialidades de Pollo</h1>
+                <p class="descripcion">Descubre nuestros deliciosos combos y platos de pollo, preparados con los mejores ingredientes.</p>
+            </div>
+
+            <!-- GRID DE PRODUCTOS CON DISEÑO PREMIUM -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
+
+                <!-- COMBO 1 → BD: Combo 1/2 Pollo + Calientito -->
+                <div class="premium-card group">
+                    <div class="card-image-container">
+                        <img src="{{ url_for('static', filename='image/carta-pollo/pollo1.jpg') }}" alt="Combo 1" class="card-image">
+                        <div class="price-badge">
+                            <span class="price-currency">S/</span>
+                            <span class="price-amount">53</span>
+                        </div>
+                        <div class="card-overlay">
+                            <div class="category-tag combo-tag">Combo Especial</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="card-title">1/2 Pollo + Calientito</h3>
+                            <div class="rating-stars">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                        </div>
+                        <p class="card-description">Delicioso medio pollo a la brasa acompañado de nuestro tradicional calientito. Una combinación perfecta para disfrutar.</p>
+                        <div class="card-features">
+                            <div class="feature-item">
+                                <i class="fas fa-drumstick-bite"></i>
+                                <span>1/2 Pollo a la Brasa</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-mug-hot"></i>
+                                <span>Calientito Tradicional</span>
+                            </div>
+                        </div>
+                        <button 
+                            class="premium-button add-to-cart"
+                            data-nombre="Combo 1/2 Pollo + Calientito"
+                            data-precio="53"
+                            data-img="{{ url_for('static', filename='image/carta-pollo/pollo1.jpg') }}">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Añadir al Carrito</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- COMBO 2 → BD: Promo Familiar (Menu Combo) -->
+                <div class="premium-card group">
+                    <div class="card-image-container">
+                        <img src="{{ url_for('static', filename='image/carta-pollo/pollo2.jpg') }}" alt="Combo 2" class="card-image">
+                        <div class="price-badge popular">
+                            <span class="price-currency">S/</span>
+                            <span class="price-amount">110</span>
+                        </div>
+                        <div class="card-overlay">
+                            <div class="category-tag family-tag">Promo Familiar</div>
+                            <div class="popular-badge">¡MÁS POPULAR!</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="card-title">Promo Familiar + 1/4 Pollo</h3>
+                            <div class="rating-stars">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                        </div>
+                        <p class="card-description">Perfecto para compartir en familia. Incluye 1/4 de pollo a la brasa con guarniciones y acompañamientos especiales.</p>
+                        <div class="card-features">
+                            <div class="feature-item">
+                                <i class="fas fa-users"></i>
+                                <span>Para Toda la Familia</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-utensils"></i>
+                                <span>Acompañamientos Incluidos</span>
+                            </div>
+                        </div>
+                        <button 
+                            class="premium-button popular add-to-cart"
+                            data-nombre="Promo Familiar (Menu Combo)"
+                            data-precio="110"
+                            data-img="{{ url_for('static', filename='image/carta-pollo/pollo2.jpg') }}">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Añadir al Carrito</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- COMBO 3 → BD: Combo 1 Pollo + Sangría -->
+                <div class="premium-card group">
+                    <div class="card-image-container">
+                        <img src="{{ url_for('static', filename='image/carta-pollo/pollo3.jpg') }}" alt="Combo 3" class="card-image">
+                        <div class="price-badge">
+                            <span class="price-currency">S/</span>
+                            <span class="price-amount">100</span>
+                        </div>
+                        <div class="card-overlay">
+                            <div class="category-tag drink-tag">Con Bebida</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="card-title">1 Pollo + Sangría</h3>
+                            <div class="rating-stars">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                        </div>
+                        <p class="card-description">Pollo entero a la brasa acompañado de nuestra refrescante sangría de la casa. Ideal para una experiencia completa.</p>
+                        <div class="card-features">
+                            <div class="feature-item">
+                                <i class="fas fa-drumstick-bite"></i>
+                                <span>Pollo Entero</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-wine-glass"></i>
+                                <span>Sangría Artesanal</span>
+                            </div>
+                        </div>
+                        <button 
+                            class="premium-button add-to-cart"
+                            data-nombre="Combo 1 Pollo + Sangría"
+                            data-precio="100"
+                            data-img="{{ url_for('static', filename='image/carta-pollo/pollo3.jpg') }}">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Añadir al Carrito</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- COMBO 4 → BD: Combo 2 Pisco Sour -->
+                <div class="premium-card group">
+                    <div class="card-image-container">
+                        <img src="{{ url_for('static', filename='image/carta-pollo/pollo3.jpg') }}" alt="Combo 4" class="card-image">
+                        <div class="price-badge">
+                            <span class="price-currency">S/</span>
+                            <span class="price-amount">34</span>
+                        </div>
+                        <div class="card-overlay">
+                            <div class="category-tag cocktail-tag">Cóctel Peruano</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="card-title">2 Pisco Sour</h3>
+                            <div class="rating-stars">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                        </div>
+                        <p class="card-description">Dos deliciosos pisco sour preparados con la receta tradicional peruana. Perfecto para brindar y celebrar.</p>
+                        <div class="card-features">
+                            <div class="feature-item">
+                                <i class="fas fa-cocktail"></i>
+                                <span>Receta Tradicional</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-flag"></i>
+                                <span>100% Peruano</span>
+                            </div>
+                        </div>
+                        <button 
+                            class="premium-button add-to-cart"
+                            data-nombre="Combo 2 Pisco Sour"
+                            data-precio="34"
+                            data-img="{{ url_for('static', filename='image/carta-pollo/pollo3.jpg') }}">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Añadir al Carrito</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- === SCRIPT PARA AGREGAR AL CARRITO === -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const botones = document.querySelectorAll(".add-to-cart");
+
+    botones.forEach(boton => {
+        boton.addEventListener("click", () => {
+
+            const producto = {
+                nombre: boton.dataset.nombre,
+                precio: parseFloat(boton.dataset.precio),
+                img: boton.dataset.img
+            };
+
+            fetch("{{ url_for('agregar_carrito') }}", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(producto),
+            })
+            .then(response => {
+                if (response.status === 403) {
+                    alert("Debes iniciar sesión para añadir productos al carrito.");
+                    return Promise.reject();
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert("Producto añadido al carrito ✔️");
+            })
+            .catch(error => {
+                console.error("Error al añadir al carrito:", error);
+                alert("Hubo un error al añadir el producto.");
+            });
+        });
+    });
+});
+</script>
+
+{% endblock %}

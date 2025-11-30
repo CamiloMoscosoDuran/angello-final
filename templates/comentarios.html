@@ -1,0 +1,94 @@
+{% extends "index.html" %}
+{% block title %}Comentarios del Restaurante{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/inicio_premium.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/comentarios.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="futuristic-container">
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="{{ url_for('inicio') }}">
+                <img src="{{ url_for('static', filename='image/inicio/logo.png') }}" alt="Logo Angello">
+            </a>
+            <span>Angello</span>
+        </div>
+
+        <div class="links">
+            <a href="{{ url_for('inicio') }}" class="main-link">Inicio</a>
+            <a href="{{ url_for('cartas') }}" class="main-link">Nuestra Carta</a>
+            <a href="{{ url_for('historia') }}">Nuestra Historia</a>
+            <a href="{{ url_for('promociones') }}">Promociones</a>
+            <a href="{{ url_for('reserva') }}">Reservaciones</a>
+            <a href="{{ url_for('delivery') }}">Delivery</a>
+        </div>
+
+        <div class="user-actions">
+            {% if loggedin %}
+            <a href="{{ url_for('logout') }}" class="btn-accent">Cerrar sesión</a>
+            {% else %}
+            <a href="{{ url_for('inicio_secion') }}" class="btn-accent">Iniciar Sesión</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="main-wrapper">
+        <div class="container">
+            <div class="hero-content">
+                <div class="page-header">
+                    <h1 class="section-title">Comentarios y Opiniones</h1>
+                    <p class="section-subtitle">Aquí podrás leer y agregar opiniones sobre el restaurante. (Visibles para todos)</p>
+                </div>
+
+                <!-- FORMULARIO DE COMENTARIOS -->
+                {% if loggedin %}
+                <div class="form-container">
+                    <form action="{{ url_for('guardar_comentario') }}" method="POST">
+                        <label for="comentario">Escribe un comentario:</label>
+                        <textarea id="comentario" name="comentario" rows="4" placeholder="Comparte tu experiencia en Angello..." required></textarea>
+                        <button type="submit" class="btn-accent">Enviar Comentario</button>
+                    </form>
+                </div>
+                {% else %}
+                <div class="login-required">
+                    <div class="login-card">
+                        <p>Debes <a href="{{ url_for('inicio_secion') }}" class="btn-accent" style="text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.9rem;">iniciar sesión</a> para comentar.</p>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- SECCIÓN DE COMENTARIOS -->
+                <div class="comentarios-section">
+                    <h2 class="comentarios-title">Comentarios Recientes</h2>
+
+                    {% if comentarios %}
+                        {% for c in comentarios %}
+                        <div class="comentario-card">
+                            <div class="comentario-header">
+                                <div class="comentario-autor">{{ c.usuario_nombre }}</div>
+                                <div class="comentario-fecha">📅 {{ c.fecha }}</div>
+                            </div>
+                            <div class="comentario-content">
+                                <p>{{ c.texto }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                    <div class="comentario-card" style="text-align: center; opacity: 0.7;">
+                        <p>No hay comentarios aún. ¡Sé el primero en compartir tu experiencia!</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

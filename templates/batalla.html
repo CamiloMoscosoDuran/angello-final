@@ -1,0 +1,37 @@
+<div class="batalla-container">
+
+  <!-- RAYOS ANIMADOS -->
+  <div class="rayo rayo1"></div>
+  <div class="rayo rayo2"></div>
+  <div class="rayo rayo3"></div>
+  <div class="rayo rayo4"></div>
+
+  <div class="batalla-box text-center">
+
+    <h2 class="text-4xl mb-4 titulo-batalla">🍗 POLLO VS PIZZA 🍕</h2>
+
+    <div class="contador-container">
+      <div class="contador-item">
+        <div class="batalla-points" id="polloPts">0</div>
+        <p>Pollo</p>
+      </div>
+      <div class="contador-item">
+        <div class="batalla-points" id="pizzaPts">0</div>
+        <p>Pizza</p>
+      </div>
+    </div>
+
+    <div class="batalla-progress">
+        <div class="progress-bar progress-pollo" id="barPollo"><div class="energia"></div>50%</div>
+        <div class="progress-bar progress-pizza" id="barPizza"><div class="energia"></div>50%</div>
+    </div>
+   
+    <div id="winnerText" class="winner-text">¡Comienza la batalla!</div>
+
+    <div class="mt-4">
+      <button id="addPollo" class="batalla-btn">+1 Pollo</button>
+      <button id="addPizza" class="batalla-btn">+1 Pizza</button>
+      <button id="resetBtn" class="batalla-btn reset">Reiniciar</button>
+    </div>
+  </div>
+</div>

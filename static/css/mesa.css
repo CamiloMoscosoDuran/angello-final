@@ -1,0 +1,82 @@
+/* Fondo oscuro al abrir */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  z-index: 998;
+}
+
+/* Ventana flotante centrada */
+.modal-mesa {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  animation: fadeIn 0.4s ease;
+}
+
+.modal-content {
+  background: rgba(72, 20, 17, 0.95);
+  border: 2px solid #ffb86b;
+  border-radius: 14px;
+  padding: 2rem;
+  max-width: 550px;
+  width: 90%;
+  text-align: center;
+  color: white;
+  font-family: 'Cinzel', serif;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  animation: popUp 0.5s ease;
+}
+
+.croquis-img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin: 1rem 0;
+  box-shadow: 0 0 10px rgba(255,184,107,0.4);
+}
+
+.confirmar-btn, .cerrar-btn {
+  margin-top: 10px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  transition: all 0.3s ease;
+}
+
+.confirmar-btn {
+  background: #4caf50;
+  color: white;
+}
+
+.confirmar-btn:hover {
+  background: #388e3c;
+  transform: scale(1.05);
+}
+
+.cerrar-btn {
+  background: #d32f2f;
+  color: white;
+  margin-left: 10px;
+}
+
+.cerrar-btn:hover {
+  background: #b71c1c;
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popUp {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
