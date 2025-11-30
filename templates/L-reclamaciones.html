@@ -1,0 +1,39 @@
+{% extends "index.html" %}
+{% block title %}Libro de Reclamaciones{% endblock %}
+
+{% block content %}
+<div class="main-wrapper">
+    <div class="content-box">
+        <h1 class="section-title">Libro de Reclamaciones Personal</h1>
+        <p class="section-subtitle">Aquí puedes enviar un reclamo directamente al restaurante. (Solo visible para ti)</p>
+
+        {% if loggedin %}
+        <form action="{{ url_for('guardar_reclamo') }}" method="POST" class="form-container">
+            <label for="reclamo">Describe tu reclamo:</label><br>
+            <textarea id="reclamo" name="reclamo" rows="6" style="width: 100%; padding: 10px; border: 1px solid #ccc;" required></textarea><br>
+            <button type="submit" class="btn-accent" style="margin-top: 10px; background-color: #ff0000;">Enviar Reclamo</button>
+        </form>
+        {% else %}
+        <div style="padding: 15px; border: 1px solid #ff0000; background-color: #333; color: white; text-align: center; margin-bottom: 20px;">
+            <p>Debes <a href="{{ url_for('inicio_secion') }}" style="color: #ff0000; text-decoration: underline;">iniciar sesión</a> para usar el libro de reclamaciones.</p>
+        </div>
+        {% endif %}
+
+        <hr style="margin: 30px 0;">
+
+        <h2>Mis Reclamos Registrados</h2>
+
+        {% if reclamos %}
+            {% for r in reclamos %}
+            <div class="reclamo-card" style="border: 1px solid #ff0000; padding: 15px; margin-bottom: 10px; border-radius: 5px; background-color: #ffe0e0; color: #333;">
+                <strong>Enviado el:</strong> <small>{{ r.fecha }}</small><br>
+                <p style="margin-top: 5px; font-style: italic;">"{{ r.texto }}"</p>
+            </div>
+            {% endfor %}
+        {% else %}
+        <p>Aún no has registrado ningún reclamo.</p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

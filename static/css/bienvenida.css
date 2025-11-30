@@ -1,0 +1,7 @@
+/* Estilos específicos para la página de bienvenida */
+
+.bg-welcome {
+  background-image: url('../image/suscripcion/background_suscripcion.jpg');
+  background-size: cover;
+  background-position: center;
+}

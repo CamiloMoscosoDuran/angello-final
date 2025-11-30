@@ -1,0 +1,120 @@
+{% extends "index.html" %}
+{% block title %}Carta Completa - Restaurante Angello{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cartas.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/carrito-flotante.css') }}">
+<script src="{{ url_for('static', filename='js/carrito.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/carrito-flotante.js') }}" defer></script>
+{% endblock %}
+
+{% block content %}
+<div class="bg-cartas">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">
+      <a href="{{ url_for('inicio') }}">
+        <img src="{{ url_for('static', filename='image/inicio/logo.png') }}" alt="Logo Angello">
+      </a>
+      <span>Angello</span>
+    </div>
+
+    <div class="links">
+      <a href="{{ url_for('inicio') }}" class="main-link">Inicio</a>
+      <a href="{{ url_for('cartas') }}" class="main-link">Nuestra Carta</a>
+      <a href="{{ url_for('historia') }}">Nuestra Historia</a>
+      <a href="{{ url_for('promociones') }}">Promociones</a>
+      <a href="{{ url_for('reserva') }}">Reservaciones</a>
+      <a href="{{ url_for('delivery') }}">Delivery</a>
+    </div>
+
+    <div class="user-actions">
+      {% if loggedin %}
+        <span class="saludo">👋 Hola, {{ nombre }}</span>
+        <a href="{{ url_for('logout') }}" class="btn-accent">Cerrar sesión</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <!-- SOLO PARA LOGUEADOS -->
+  {% if loggedin %}
+
+  <div class="main-wrapper">
+    <div class="content-box">
+
+      <h1 class="section-title">CARTA COMPLETA</h1>
+      <p class="section-subtitle">Todos nuestros platos en un solo lugar</p>
+
+      <div class="card-grid">
+
+        <a href="{{ url_for('cc_pollos') }}" class="card group">
+          <div class="card-img">
+            <img src="{{ url_for('static', filename='image/carta/pollo.png') }}" alt="Pollos">
+          </div>
+          <div class="card-body">
+            <h3>🍗 Pollos a la Brasa</h3>
+          </div>
+        </a>
+
+        <a href="{{ url_for('cc_pizzas') }}" class="card group">
+          <div class="card-img">
+            <img src="{{ url_for('static', filename='image/carta/pizza.png') }}" alt="Pizzas">
+          </div>
+          <div class="card-body">
+            <h3>🍕 Pizzas Artesanales</h3>
+          </div>
+        </a>
+
+        <a href="{{ url_for('cc_pastas') }}" class="card group">
+          <div class="card-img">
+            <img src="{{ url_for('static', filename='image/carta/pasta.png') }}" alt="Pastas">
+          </div>
+          <div class="card-body">
+            <h3>🍝 Pastas Caseras</h3>
+          </div>
+        </a>
+
+        <a href="{{ url_for('cc_bebidas') }}" class="card group">
+          <div class="card-img">
+            <img src="{{ url_for('static', filename='image/carta/bebida.png') }}" alt="Bebidas">
+          </div>
+          <div class="card-body">
+            <h3>🍹 Bebidas Refrescantes</h3>
+          </div>
+        </a>
+
+        <a href="{{ url_for('cc_entradas') }}" class="card group">
+          <div class="card-img">
+            <img src="{{ url_for('static', filename='image/carta/bebida.png') }}" alt="Entradas">
+          </div>
+          <div class="card-body">
+            <h3>Entradas</h3>
+          </div>
+        </a>
+
+        <a href="{{ url_for('cc_ensaladas') }}" class="card group">
+          <div class="card-img">
+            <img src="{{ url_for('static', filename='image/carta/bebida.png') }}" alt="Ensaladas">
+          </div>
+          <div class="card-body">
+            <h3>Ensaladas</h3>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+
+  {% endif %}
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Restaurante Angello - Todos los derechos reservados.</p>
+  </footer>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+{% endblock %}

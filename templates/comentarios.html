@@ -1,0 +1,40 @@
+{% extends "index.html" %}
+{% block title %}Comentarios del Restaurante{% endblock %}
+
+{% block content %}
+<div class="main-wrapper">
+    <div class="content-box">
+        <h1 class="section-title">Comentarios y Opiniones</h1>
+        <p class="section-subtitle">Aquí podrás leer y agregar opiniones sobre el restaurante. (Visibles para todos)</p>
+
+        {% if loggedin %}
+        <form action="{{ url_for('guardar_comentario') }}" method="POST" class="form-container">
+            <label for="comentario">Escribe un comentario:</label><br>
+            <textarea id="comentario" name="comentario" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ccc;" required></textarea><br>
+            <button type="submit" class="btn-accent" style="margin-top: 10px;">Enviar Comentario</button>
+        </form>
+        {% else %}
+        <div style="padding: 15px; border: 1px solid #ffb400; background-color: #333; color: white; text-align: center; margin-bottom: 20px;">
+            <p>Debes <a href="{{ url_for('inicio_secion') }}" style="color: #ffb400; text-decoration: underline;">iniciar sesión</a> para comentar.</p>
+        </div>
+        {% endif %}
+
+        <hr style="margin: 30px 0;">
+
+        <h2>Comentarios recientes</h2>
+
+        {% if comentarios %}
+            {% for c in comentarios %}
+            <div class="comment-card" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-radius: 5px;">
+                <strong style="color: #ffb400;">{{ c.usuario_nombre }}</strong><br>
+                <p>{{ c.texto }}</p>
+                <small style="color: #888;">📅 {{ c.fecha }}</small>
+            </div>
+            {% endfor %}
+        {% else %}
+        <p>No hay comentarios aún.</p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

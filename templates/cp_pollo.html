@@ -1,0 +1,149 @@
+{% extends "index.html" %}
+
+{% block title %}Carta - Pollos{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/carta.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/carrito-flotante.css') }}">
+<script src="{{ url_for('static', filename='js/carrito.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/carrito-flotante.js') }}" defer></script>
+{% endblock %}
+
+{% block content %}
+<div class="flex-grow bg-main bg-cartas min-h-screen flex flex-col">
+    <nav class="flex justify-between items-center p-4 bg-black bg-opacity-50 text-white shadow-lg sticky top-0 z-50">
+        <a href="{{ url_for('promociones') }}" class="text-orange-500 hover:text-white transition-colors font-bold text-lg">← Volver a la Carta</a>
+    </nav>
+
+    <div class="flex flex-col items-center justify-center p-8 space-y-8 relative min-h-screen">
+        <div class="neon-bg" aria-hidden="true"></div>
+
+        <div class="cards-layout max-w-5xl w-full flex gap-8 items-center">
+
+            <aside class="side-panel">
+                <div class="pizza-image-wrapper">
+                    <img src="{{ url_for('static', filename='image/inicio/logo.png') }}" alt="Pollos" class="pizza-image">
+                </div>
+                <h1 class="pizza-title">Pollos</h1>
+            </aside>
+
+            
+            <!-- === GRID DE PRODUCTOS === -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 flex-1">
+
+                <!-- COMBO 1 → BD: Combo 1/2 Pollo + Calientito -->
+                <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                    <div class="price-tag">53</div>
+                    <img src="{{ url_for('static', filename='image/carta-pollo/pollo1.jpg') }}" alt="Combo 1" class="w-full h-64 object-cover">
+                    <div class="p-6 text-white">
+                        <h3 class="text-2xl font-bold mb-2">Combo</h3>
+                        <p>1/2 pollo + Calientito</p>
+
+                        <button 
+                            class="mt-4 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded add-to-cart"
+                            data-nombre="Combo 1/2 Pollo + Calientito"
+                            data-precio="53"
+                            data-img="{{ url_for('static', filename='image/carta-pollo/pollo1.jpg') }}">
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+
+                <!-- COMBO 2 → BD: Promo Familiar (Menu Combo) -->
+                <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                    <div class="price-tag">110</div>
+                    <img src="{{ url_for('static', filename='image/carta-pollo/pollo2.jpg') }}" alt="Combo 2" class="w-full h-64 object-cover">
+                    <div class="p-6 text-white">
+                        <h3 class="text-2xl font-bold mb-2">Combo</h3>
+                        <p>Promo Familiar + 1/4 Pollo</p>
+
+                        <button 
+                            class="mt-4 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded add-to-cart"
+                            data-nombre="Promo Familiar (Menu Combo)"
+                            data-precio="110"
+                            data-img="{{ url_for('static', filename='image/carta-pollo/pollo2.jpg') }}">
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+
+                <!-- COMBO 3 → BD: Combo 1 Pollo + Sangría -->
+                <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                    <div class="price-tag">100</div>
+                    <img src="{{ url_for('static', filename='image/carta-pollo/pollo3.jpg') }}" alt="Combo 3" class="w-full h-64 object-cover">
+                    <div class="p-6 text-white">
+                        <h3 class="text-2xl font-bold mb-2">Combo</h3>
+                        <p>1 Pollo + Sangría</p>
+
+                        <button 
+                            class="mt-4 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded add-to-cart"
+                            data-nombre="Combo 1 Pollo + Sangría"
+                            data-precio="100"
+                            data-img="{{ url_for('static', filename='image/carta-pollo/pollo3.jpg') }}">
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+
+                <!-- COMBO 4 → BD: Combo 2 Pisco Sour -->
+                <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                    <div class="price-tag">34</div>
+                    <img src="{{ url_for('static', filename='image/carta-pollo/pollo3.jpg') }}" alt="Combo 4" class="w-full h-64 object-cover">
+                    <div class="p-6 text-white">
+                        <h3 class="text-2xl font-bold mb-2">Combo</h3>
+                        <p>2 Pisco Sour</p>
+
+                        <button 
+                            class="mt-4 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded add-to-cart"
+                            data-nombre="Combo 2 Pisco Sour"
+                            data-precio="34"
+                            data-img="{{ url_for('static', filename='image/carta-pollo/pollo3.jpg') }}">
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- === SCRIPT PARA AGREGAR AL CARRITO === -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const botones = document.querySelectorAll(".add-to-cart");
+
+    botones.forEach(boton => {
+        boton.addEventListener("click", () => {
+
+            const producto = {
+                nombre: boton.dataset.nombre,
+                precio: parseFloat(boton.dataset.precio),
+                img: boton.dataset.img
+            };
+
+            fetch("{{ url_for('agregar_carrito') }}", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(producto),
+            })
+            .then(response => {
+                if (response.status === 403) {
+                    alert("Debes iniciar sesión para añadir productos al carrito.");
+                    return Promise.reject();
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert("Producto añadido al carrito ✔️");
+            })
+            .catch(error => {
+                console.error("Error al añadir al carrito:", error);
+                alert("Hubo un error al añadir el producto.");
+            });
+        });
+    });
+});
+</script>
+
+{% endblock %}

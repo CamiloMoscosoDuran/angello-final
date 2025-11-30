@@ -1,0 +1,66 @@
+﻿{% extends "index.html" %}
+
+{% block title %}Bienvenido, {{ nombre }}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bienvenida.css') }}">
+{% endblock %}
+
+{% block content %}
+<main class="flex-grow bg-main bg-welcome min-h-screen flex flex-col">
+
+  <!-- Barra de navegación responsiva -->
+    <!-- Barra de navegación responsiva -->
+    <nav class="navbar">
+      <div class="logo">
+        <a href="{{ url_for('inicio') }}">
+          <img src="{{ url_for('static', filename='image/inicio/logo.png') }}" alt="Logo Angello">
+        </a>
+        <span>Angello</span>
+      </div>
+
+      <div class="links">
+        <a href="{{ url_for('inicio') }}" class="main-link">Inicio</a>
+        <a href="{{ url_for('cartas') }}" class="main-link">Nuestra Carta</a>
+        <a href="{{ url_for('historia') }}">Nuestra Historia</a>
+        <a href="{{ url_for('promociones') if loggedin else url_for('inicio_secion') }}">Promociones</a>
+        <a href="{{ url_for('reserva') }}">Reservaciones</a>
+        <a href="{{ url_for('delivery') }}">Delivery</a>
+      </div>
+
+      <div class="user-actions">
+        {% if loggedin %}
+        <span class="saludo">👋 Hola, {{ nombre }}</span>
+        <a href="{{ url_for('logout') }}" class="btn-accent">Cerrar sesión</a>
+        {% else %}
+        <a href="{{ url_for('inicio_secion') }}" class="btn-accent">Iniciar Sesión</a>
+        {% endif %}
+      </div>
+    </nav>
+
+  <!-- Contenido principal -->
+  <section class="flex-grow flex flex-col items-center justify-center p-8">
+    <div class="bg-black bg-opacity-80 p-10 rounded-xl shadow-2xl text-center max-w-xl w-full border-4 border-orange-500 transform transition duration-500 hover:scale-105">
+      
+      {% if success %}
+        <p class="text-3xl text-green-400 font-extrabold mb-6 animate-pulse">{{ success }}</p>
+      {% endif %}
+
+      <h1 class="text-5xl font-extrabold text-white mb-4">
+        ¡Bienvenido, {{ nombre }}!
+      </h1>
+      <p class="text-2xl text-gray-300 mb-8">
+        Ahora eres parte de la experiencia Angello. Disfruta de beneficios exclusivos y ofertas especiales.
+      </p>
+
+      <a href="{{ url_for('promociones') }}" 
+         class="inline-block py-4 px-10 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-full text-xl shadow-lg transition-all transform hover:shadow-xl hover:-translate-y-1">
+        Ver mis Promociones Ahora
+      </a>
+    </div>
+  </section>
+
+  <!-- El footer se hereda desde base.html -->
+</main>
+{% endblock %}
+

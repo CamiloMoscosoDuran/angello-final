@@ -1,0 +1,288 @@
+{% extends "index.html" %}
+
+{% block title %}Delivery - Restaurante Angello{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/delivery.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="{{ url_for('static', filename='js/delivery.js') }}" defer></script>
+{% endblock %}
+
+{% block content %}
+<div class="bg-delivery">
+    <!-- NAVBAR MEJORADA -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="{{ url_for('inicio') }}">
+                <img src="{{ url_for('static', filename='image/inicio/logo.png') }}" alt="Logo Angello">
+                <span class="logo-text">Angello</span>
+            </a>
+        </div>
+
+        <div class="nav-menu">
+            <div class="links">
+                <a href="{{ url_for('inicio') }}"><i class="fas fa-home"></i> Inicio</a>
+                <a href="{{ url_for('cartas') }}"><i class="fas fa-utensils"></i> Carta</a>
+                <a href="{{ url_for('historia') }}"><i class="fas fa-heart"></i> Historia</a>
+                {% if loggedin %}
+                    <a href="{{ url_for('promociones') }}"><i class="fas fa-gift"></i> Promociones</a>
+                    <a href="{{ url_for('reserva') }}"><i class="fas fa-calendar"></i> Reservas</a>
+                    <a href="{{ url_for('delivery') }}" class="active"><i class="fas fa-motorcycle"></i> Delivery</a>
+                {% else %}
+                    <a href="{{ url_for('inicio_secion') }}"><i class="fas fa-gift"></i> Promociones</a>
+                    <a href="{{ url_for('inicio_secion') }}"><i class="fas fa-calendar"></i> Reservas</a>
+                    <a href="{{ url_for('inicio_secion') }}"><i class="fas fa-motorcycle"></i> Delivery</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="user-actions">
+            {% if loggedin %}
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="saludo">¡Hola, {{ nombre }}!</span>
+                </div>
+                <a href="{{ url_for('carrito') }}" class="btn-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <a href="{{ url_for('logout') }}" class="btn-accent">Cerrar sesión</a>
+            {% else %}
+                <a href="{{ url_for('inicio_secion') }}" class="btn-accent">Iniciar Sesión</a>
+                <a href="{{ url_for('carrito') }}" class="btn-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            {% endif %}
+        </div>
+
+        <!-- Menú hamburguesa para móvil -->
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero-delivery">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <i class="fas fa-motorcycle delivery-icon"></i>
+                    Delivery Angello
+                </h1>
+                <p class="hero-subtitle">El sabor que amas, directo a tu puerta</p>
+                <p class="hero-description">
+                    Disfruta de nuestros deliciosos platos desde la comodidad de tu hogar. 
+                    Pedidos rápidos, delivery seguro y la misma calidad de siempre.
+                </p>
+                <div class="hero-buttons">
+                    <a href="{{ url_for('carta_completa') }}" class="btn-primary">
+                        <i class="fas fa-utensils"></i>
+                        Ver Menú
+                    </a>
+                    <a href="https://wa.me/51999999999" class="btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        Pedir por WhatsApp
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="floating-card">
+                    <img src="{{ url_for('static', filename='image/delivery/whatsapp.png') }}" alt="Delivery" class="delivery-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OPCIONES DE PEDIDO -->
+    <section class="opciones-section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-star"></i>
+                ¿Cómo quieres hacer tu pedido?
+            </h2>
+            
+            <div class="opciones-grid">
+                <div class="option-card card-online">
+                    <div class="card-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Pedido Online</h3>
+                    <p>Navega nuestro menú digital y haz tu pedido en segundos</p>
+                    <ul class="features">
+                        <li><i class="fas fa-check"></i> Menú actualizado</li>
+                        <li><i class="fas fa-check"></i> Pago seguro</li>
+                        <li><i class="fas fa-check"></i> Seguimiento en tiempo real</li>
+                    </ul>
+                    <a href="{{ url_for('carta_completa') }}" class="btn-card">
+                        <i class="fas fa-mouse-pointer"></i>
+                        Ordenar Ahora
+                    </a>
+                </div>
+
+                <div class="option-card card-whatsapp">
+                    <div class="card-icon whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp</h3>
+                    <p>Chatea directamente con nosotros y haz tu pedido personalizado</p>
+                    <ul class="features">
+                        <li><i class="fas fa-check"></i> Atención personalizada</li>
+                        <li><i class="fas fa-check"></i> Respuesta rápida</li>
+                        <li><i class="fas fa-check"></i> Modificaciones fáciles</li>
+                    </ul>
+                    <a href="https://wa.me/51999999999?text=Hola! Quiero hacer un pedido" class="btn-card whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        Chatear Ahora
+                    </a>
+                </div>
+
+                <div class="option-card card-phone">
+                    <div class="card-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Teléfono</h3>
+                    <p>Llámanos directamente y te ayudamos con tu pedido</p>
+                    <ul class="features">
+                        <li><i class="fas fa-check"></i> Asesoría experta</li>
+                        <li><i class="fas fa-check"></i> Recomendaciones</li>
+                        <li><i class="fas fa-check"></i> Promociones especiales</li>
+                    </ul>
+                    <a href="tel:+51999999999" class="btn-card">
+                        <i class="fas fa-phone"></i>
+                        (01) 999-9999
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFORMACIÓN DE COBERTURA Y HORARIOS -->
+    <section class="info-section">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card coverage-card">
+                    <div class="card-header">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Cobertura de Delivery</h3>
+                    </div>
+                    <div class="coverage-areas">
+                        <div class="area">
+                            <i class="fas fa-map-pin"></i>
+                            <span>Cañete Centro</span>
+                        </div>
+                        <div class="area">
+                            <i class="fas fa-map-pin"></i>
+                            <span>Imperial</span>
+                        </div>
+                        <div class="area">
+                            <i class="fas fa-map-pin"></i>
+                            <span>San Vicente</span>
+                        </div>
+                    </div>
+                    <div class="delivery-info">
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Tiempo: 30-45 min</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>Delivery: S/ 5.00</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-gift"></i>
+                            <span>Gratis pedidos +S/ 50</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card schedule-card">
+                    <div class="card-header">
+                        <i class="fas fa-calendar-clock"></i>
+                        <h3>Horarios de Atención</h3>
+                    </div>
+                    <div class="schedule-grid">
+                        <div class="schedule-item">
+                            <span class="day">Martes - Jueves</span>
+                            <span class="hours">2:00 PM - 11:00 PM</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="day">Viernes - Sábado</span>
+                            <span class="hours">12:00 PM - 12:00 AM</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span class="day">Domingo</span>
+                            <span class="hours">12:00 PM - 11:00 PM</span>
+                        </div>
+                        <div class="schedule-item closed">
+                            <span class="day">Lunes</span>
+                            <span class="hours">Cerrado</span>
+                        </div>
+                    </div>
+                    <div class="status-indicator">
+                        <div class="status-dot online"></div>
+                        <span class="status-text">Abierto ahora</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESO DE DELIVERY -->
+    <section class="process-section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-route"></i>
+                Tu pedido en 4 pasos
+            </h2>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h4>Elige tu comida</h4>
+                    <p>Navega nuestro delicioso menú</p>
+                </div>
+
+                <div class="step-connector"></div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h4>Confirma tu pedido</h4>
+                    <p>Revisa y procede al pago</p>
+                </div>
+
+                <div class="step-connector"></div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-fire-flame-curved"></i>
+                    </div>
+                    <h4>Preparamos tu comida</h4>
+                    <p>Con los mejores ingredientes</p>
+                </div>
+
+                <div class="step-connector"></div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i class="fas fa-motorcycle"></i>
+                    </div>
+                    <h4>Te lo llevamos</h4>
+                    <p>Rápido y seguro a tu puerta</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+{% endblock %}
