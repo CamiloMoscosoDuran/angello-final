@@ -1,0 +1,119 @@
+﻿{% extends "index.html" %}
+
+{% block title %}Carta - Pastas{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cartas.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="flex-grow bg-main bg-cartas min-h-screen flex flex-col">
+    <nav class="flex justify-between items-center p-4 bg-black bg-opacity-50 text-white shadow-lg sticky top-0 z-50">
+        <a href="{{ url_for('cartas') }}" class="text-orange-500 hover:text-white transition-colors font-bold text-lg">← Volver a la Carta</a>
+    </nav>
+
+    <div class="flex flex-col items-center justify-center p-8 space-y-8">
+        <h1 class="text-5xl font-cinzel text-white mb-4">Pastas</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl">
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">25</div>
+                <img src="{{ url_for('static', filename='image/carta-pastas/pastas1.jpg') }}" alt="Ravioles" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Ravioles</h3>
+                    <p>Rellenos de jamón y queso en salsa de champiñones y tocino.</p>
+                    <div class="multi-price">
+                        <span class="size-label">Jamón/Queso:</span><span class="price-option">25</span>
+                        <span class="size-label">Carne:</span><span class="price-option">25</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">30</div>
+                <img src="{{ url_for('static', filename='image/carta-pastas/pastas2.jpg') }}" alt="Lasagna" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Lasagna</h3>
+                    <p>De carne en salsa blanca, jamón, pimiento, champiñones, mozzarella, parmesano.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">23</div>
+                <img src="{{ url_for('static', filename='image/carta-pastas/pastas3.jpg') }}" alt="Pesto" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Pesto</h3>
+                    <p>Deliciosa pasta con salsa pesto de albahaca y parmesano.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">24</div>
+                <img src="{{ url_for('static', filename='image/carta-pastas/pastas1.jpg') }}" alt="Boloñesa" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Boloñesa</h3>
+                    <p>Clásica pasta con salsa de carne y tomate natural, al estilo italiano.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">24</div>
+                <img src="{{ url_for('static', filename='image/carta-pastas/pastas2.jpg') }}" alt="Alfredo" class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Alfredo</h3>
+                    <p>Pasta bañada en una cremosa salsa de queso parmesano y mantequilla.</p>
+                </div>
+            </div>
+
+            <!-- Información sobre tipos de pasta -->
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-4 text-center">Elige tu Pasta Favorita</h3>
+                    <div class="space-y-2">
+                        <p><strong>PASO #1:</strong> Elige tu Salsa</p>
+                        <p><strong>PASO #2:</strong> Ahora tu pasta favorita</p>
+                        <p class="text-sm">Hechas en casa:</p>
+                        <div class="grid grid-cols-2 gap-2 text-sm">
+                            <span>• LINGUINI - FETTUCCINI</span>
+                            <span class="inline-price text-sm">+2</span>
+                            <span>• PAPPARDELLE - REGUINETTE</span>
+                            <span></span>
+                            <span>• SPAGHETTI - CANUTO</span>
+                            <span></span>
+                            <span>• MACARRONES - RIGATONI</span>
+                            <span></span>
+                        </div>
+                        <p><strong>PASO #3:</strong> Opc. adiciona nuestro clásico</p>
+                        <div class="flex justify-between">
+                            <span>1/4 DE POLLO</span>
+                            <span class="inline-price">12</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Información sobre Extras -->
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-4 text-center">Extras</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span>PORCIÓN DE PAPAS</span>
+                            <span class="inline-price">7 - 13</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>PORCIÓN DE CAMOTE</span>
+                            <span class="inline-price">7 - 13</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>PORCIÓN DE ARROZ</span>
+                            <span class="inline-price">8</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

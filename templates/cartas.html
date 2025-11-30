@@ -1,0 +1,164 @@
+{% extends "index.html" %}
+{% block title %}Nuestra Carta - Restaurante Angello{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cartas.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="bg-cartas">
+
+  <!-- NAVBAR - con mejoras responsivas -->
+  <nav class="navbar">
+    <div class="logo">
+      <a href="{{ url_for('inicio') }}">
+        <img src="{{ url_for('static', filename='image/inicio/logo.png') }}" alt="Logo Angello">
+      </a>
+      <span>Angello</span>
+    </div>
+
+    <div class="links">
+      <a href="{{ url_for('inicio') }}" class="main-link">Inicio</a>
+      <a href="{{ url_for('cartas') }}" class="main-link">Nuestra Carta</a>
+      <a href="{{ url_for('historia') }}">Nuestra Historia</a>
+      <a href="{{ url_for('promociones') if loggedin else url_for('inicio_secion') }}">Promociones</a>
+      <a href="{{ url_for('reserva') }}">Reservaciones</a>
+      <a href="{{ url_for('delivery') }}">Delivery</a>
+    </div>
+
+    <div class="user-actions">
+      {% if loggedin %}
+      <span class="saludo">👋 Hola, {{ nombre }}</span>
+      <a href="{{ url_for('logout') }}" class="btn-accent">Cerrar sesión</a>
+      {% else %}
+      <a href="{{ url_for('inicio_secion') }}" class="btn-accent">Iniciar Sesión</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div class="main-wrapper">
+    <div class="content-box">
+      <h1 class="section-title">MENÚ PRINCIPAL</h1>
+      <p class="section-subtitle">
+        Descubre nuestra exclusiva selección gastronómica. ¡Elige tu deleite!
+      </p>
+
+      {% if loggedin %}
+      <!-- Usuarios logueados -->
+      <div class="card-grid">
+        <a href="{{ url_for('carta_pollo') }}" class="card group">
+          <div class="card-img">
+            <img src="{{ url_for('static', filename='image/carta/pollo.png') }}" alt="Pollos">
+          </div>
+          <div class="card-body">
+            <h3>🍗 Pollos a la Brasa</h3>
+          </div>
+        </a>
+
+        <a href="{{ url_for('carta_pizza') }}" class="card group">
+          <div class="card-img">
+            <img src="{{ url_for('static', filename='image/carta/pizza.png') }}" alt="Pizzas">
+          </div>
+          <div class="card-body">
+            <h3>🍕 Pizzas Artesanales</h3>
+          </div>
+        </a>
+
+        <a href="{{ url_for('carta_pasta') }}" class="card group">
+          <div class="card-img">
+            <img src="{{ url_for('static', filename='image/carta/pasta.png') }}" alt="Pastas">
+          </div>
+          <div class="card-body">
+            <h3>🍝 Pastas Caseras</h3>
+          </div>
+        </a>
+
+        <a href="{{ url_for('carta_bebidas') }}" class="card group">
+          <div class="card-img">
+            <img src="{{ url_for('static', filename='image/carta/bebida.png') }}" alt="Bebidas">
+          </div>
+          <div class="card-body">
+            <h3>🍹 Bebidas Refrescantes</h3>
+          </div>
+        </a>
+
+        <a href="{{ url_for('carta_entradas') }}" class="card group">
+          <div class="card-img">
+            <img src="{{ url_for('static', filename='image/carta/bebida.png') }}" alt="Entradas">
+          </div>
+          <div class="card-body">
+            <h3>Entradas</h3>
+          </div>
+        </a>
+
+        <a href="{{ url_for('carta_ensaladas') }}" class="card group">
+          <div class="card-img">
+            <img src="{{ url_for('static', filename='image/carta/bebida.png') }}" alt="Ensaladas">
+          </div>
+          <div class="card-body">
+            <h3>Ensaladas</h3>
+          </div>
+        </a>
+      </div>
+      {% else %}
+      <!-- Usuarios no logueados -->
+      <div class="button-container">
+        <a href="{{ url_for('inicio_secion') }}" class="px-6 py-3 text-lg btn-gold shadow-xl">
+          Suscríbete para ver precios
+        </a>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-img">
+            <img src="{{ url_for('static', filename='image/carta/pollo.png') }}" alt="Pollos">
+          </div>
+          <div class="card-body">
+            <h3>🍗 Pollos a la Brasa</h3>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <img src="{{ url_for('static', filename='image/carta/pizza.png') }}" alt="Pizzas">
+          </div>
+          <div class="card-body">
+            <h3>🍕 Pizzas Artesanales</h3>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <img src="{{ url_for('static', filename='image/carta/pasta.png') }}" alt="Pastas">
+          </div>
+          <div class="card-body">
+            <h3>🍝 Pastas Caseras</h3>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <img src="{{ url_for('static', filename='image/carta/bebida.png') }}" alt="Bebidas">
+          </div>
+          <div class="card-body">
+            <h3>🍹 Bebidas Refrescantes</h3>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Restaurante Angello - Todos los derechos reservados.
+      <a href="#">Política de Privacidad</a> | <a href="#">Términos</a>
+    </p>
+  </footer>
+
+</div>
+
+<!-- Script para el menú hamburguesa responsive -->
+<script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+{% endblock %}

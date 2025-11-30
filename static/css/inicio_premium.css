@@ -1,0 +1,349 @@
+﻿/* ------------------------------------------------------------ */
+/* INICIO_PREMIUM.CSS - Estilo coherente con diseño responsivo */
+/* ------------------------------------------------------------ */
+
+/* IMPORTAR NAVBAR RESPONSIVO COMÚN */
+@import url('./navbar-responsive.css');
+
+/* Fondo general */
+.bg-inicio-premium {
+  background-color: #E9E4C7;
+  background-image: url('../image/inicio/fondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'Open Sans', sans-serif;
+  min-height: 100vh;
+}
+
+/* ------------------------------------------------------------ */
+/* USER ACTIONS ESPECÍFICAS */
+/* ------------------------------------------------------------ */
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.saludo {
+  color: #ffb86b;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* BOTÓN ACCENT */
+.btn-accent {
+  background: linear-gradient(90deg, #ff8c42, #ffb86b);
+  color: #4a0b07;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  transition: all 0.3s ease-in-out;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+
+.btn-accent:hover {
+  background: linear-gradient(90deg, #ffb86b, #ff8c42);
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(255, 184, 107, 0.5);
+}
+
+/* BOTÓN ACCENT (Incluye .btn-login y .btn-accent) */
+.btn-accent,
+.btn-login {
+  background: linear-gradient(90deg, #ff8c42, #ffb86b);
+  color: #4a0b07;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  transition: all 0.3s ease-in-out;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+
+.btn-accent:hover,
+.btn-login:hover {
+  background: linear-gradient(90deg, #ffb86b, #ff8c42);
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(255, 184, 107, 0.5);
+}
+
+/* Botón de Logout (Mantiene el color rojo) */
+.btn-logout {
+  background: #941b0c;
+  color: white;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-family: 'Cinzel', serif;
+  font-size: 1.05rem;
+  transition: all 0.3s ease-in-out;
+  text-shadow: none;
+}
+
+.btn-logout:hover {
+  background: #b42012;
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(180, 32, 18, 0.5);
+}
+
+/* ------------------------------------------------------------ */
+/* CONTENIDO PRINCIPAL Y HERO (Estructura para Carrusel + Tarjeta) */
+/* ------------------------------------------------------------ */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+}
+
+.hero-content {
+  /* Contenedor Flex para el carrusel y la tarjeta */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  /* Alinea los ítems en la parte superior */
+  gap: 3rem;
+  max-width: 1100px;
+}
+
+/*
+ * ESTILOS DE LA TARJETA PRINCIPAL (lado derecho)
+ */
+.hero-card {
+  background: rgba(72, 20, 17, 0.9);
+  border: 1px solid rgba(255, 200, 150, 0.15);
+  border-radius: 14px;
+  padding: 2.5rem;
+  color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  max-width: 500px;
+  text-align: center;
+  flex: 1 1 400px;
+}
+
+.hero-card h1 {
+  font-family: 'Cinzel', serif;
+  color: #ffb86b;
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+}
+
+.hero-card h2 {
+  font-family: 'Cinzel', serif;
+  color: #ffb86b;
+  margin-top: 1.5rem;
+}
+
+.hero-card .descripcion {
+  color: #f1e1c1;
+  margin-bottom: 1rem;
+}
+
+.btn-principal {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.6rem;
+  background: linear-gradient(90deg, #ff8c42, #ffb86b);
+  color: #4a0b07;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+.btn-principal:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 184, 107, 0.4);
+}
+
+/* ALERTA */
+.alert-success {
+  background-color: #166534;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------ */
+/* ESTILOS DEL CARRUSEL (Tamaño fijo y constante) */
+/* ------------------------------------------------------------ */
+.carrusel-container {
+  /* CLAVE: Bloquea el ancho a 450px y le prohíbe crecer o encoger */
+  flex: 0 0 450px;
+  max-width: 450px;
+  min-width: 280px;
+  position: relative;
+
+  /* CLAVE: Bloquea la altura a un valor fijo para eliminar el salto */
+  height: 420px;
+  min-height: 420px;
+
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 3px solid #ffb86b;
+}
+
+.carrusel-slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.carrusel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Recorta la imagen más ancha para que se ajuste sin distorsión */
+  display: block;
+}
+
+/* Botones de navegación (Flechas) */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  transition: 0.6s ease;
+  user-select: none;
+  background-color: rgba(74, 11, 7, 0.7);
+  border: 1px solid #ffb86b;
+  z-index: 50;
+}
+
+.prev {
+  left: 0;
+  border-radius: 0 14px 14px 0;
+}
+
+.next {
+  right: 0;
+  border-radius: 14px 0 0 14px;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(255, 184, 107, 0.9);
+  color: #4a0b07;
+}
+
+/* Puntos indicadores (Dots) */
+.carrusel-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 50;
+}
+
+.dot {
+  cursor: pointer;
+  height: 12px;
+  width: 12px;
+  margin: 0 4px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+  border: 1px solid #ffb86b;
+}
+
+.active,
+.dot:hover {
+  background-color: #ffb86b;
+}
+
+
+/* ------------------------------------------------------------ */
+/* FOOTER (Sin cambios) */
+/* ------------------------------------------------------------ */
+footer {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-align: center;
+  padding: 1.2rem 0;
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+}
+
+footer a {
+  color: #ffb86b;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #ffffff;
+}
+
+/* ------------------------------------------------------------ */
+/* RESPONSIVE - ESPECÍFICO PARA INICIO PREMIUM */
+/* ------------------------------------------------------------ */
+
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* AJUSTE MOVIL: Carrusel - Asegurar altura fija en móvil */
+  .carrusel-container {
+    flex: 1 1 100%;
+    max-width: 100%;
+    height: 280px;
+    min-height: 280px;
+    margin: 0;
+  }
+
+  .hero-card {
+    padding: 1.5rem;
+    margin: 0;
+  }
+
+  .prev,
+  .next {
+    font-size: 18px;
+    padding: 12px;
+  }
+}
+
+/* ------------------------------------------------------------ */
+/* ANIMACIONES (Necesarias para el efecto fade) */
+/* ------------------------------------------------------------ */
+@keyframes fade {
+  from {
+    opacity: .4
+  }
+
+  to {
+    opacity: 1
+  }
+}

@@ -1,0 +1,484 @@
+﻿{% extends "index.html" %}
+
+{% block title %}Carta - Bebidas{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cartas.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="flex-grow bg-main bg-cartas min-h-screen flex flex-col">
+    <nav class="flex justify-between items-center p-4 bg-black bg-opacity-50 text-white shadow-lg sticky top-0 z-50">
+        <a href="#" id="back-to-sections" class="text-orange-500 hover:text-white transition-colors font-bold text-lg">←
+            Volver a la Carta</a>
+    </nav>
+
+    <!-- Sección de navegación interna: Bebidas / Barras / Vino -->
+    <div id="sections-nav" class="flex flex-col items-center justify-center p-8">
+        <div class="max-w-5xl w-full mb-8">
+            <h2 class="text-3xl text-white font-semibold mb-4">Secciones</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <a href="#" data-target="section-bebidas"
+                    class="card group bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg p-4 text-white hover:opacity-90">
+                    <div class="w-full h-40 overflow-hidden rounded">
+                        <img src="{{ url_for('static', filename='image/carta-bebida/bebida1.jpg') }}" alt="Bebidas"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold">Bebidas</h3>
+                        <p class="text-sm">Jugos, gaseosas y refrescos.</p>
+                    </div>
+                </a>
+
+                <a href="#" data-target="section-barras"
+                    class="card group bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg p-4 text-white hover:opacity-90">
+                    <div class="w-full h-40 overflow-hidden rounded">
+                        <img src="{{ url_for('static', filename='image/carta-bebida/bebida2.jpg') }}" alt="Barras"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold">Barras</h3>
+                        <p class="text-sm">Cervezas y cócteles de la casa.</p>
+                    </div>
+                </a>
+
+                <a href="#" data-target="section-vino"
+                    class="card group bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg p-4 text-white hover:opacity-90">
+                    <div class="w-full h-40 overflow-hidden rounded">
+                        <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="Vino"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold">Vino</h3>
+                        <p class="text-sm">Selección de tintos y blancos.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <section id="section-bebidas" class="flex flex-col items-center justify-center p-8 space-y-8">
+        <h1 id="bebidas" class="text-5xl font-cinzel text-white mb-4">Bebidas</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl">
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">5</div>
+                <img src="{{ url_for('static', filename='image/carta-bebida/bebida1.jpg') }}" alt="Refresco del Día"
+                    class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Refresco del Día</h3>
+                    <p>Jugos naturales de papaya, piña o fresa. 100% naturales y refrescantes.</p>
+                    <div class="multi-price">
+                        <span class="size-label">1/2 LT:</span><span class="price-option">5</span>
+                        <span class="size-label">1 LT:</span><span class="price-option">10</span>
+                        <span class="size-label">1.5 LT:</span><span class="price-option">15</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">3.5</div>
+                <img src="{{ url_for('static', filename='image/carta-bebida/bebida2.jpg') }}" alt="Gaseosas"
+                    class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Gaseosas</h3>
+                    <p>Variedad de marcas en botella o vaso, bien frías para acompañar tus platos.</p>
+                    <div class="multi-price">
+                        <span class="size-label">Personal:</span><span class="price-option">3.5</span>
+                        <span class="size-label">1/2 LT:</span><span class="price-option">5</span>
+                        <span class="size-label">Gordita:</span><span class="price-option">7</span>
+                        <span class="size-label">1 LT:</span><span class="price-option">10</span>
+                        <span class="size-label">1.5 LT:</span><span class="price-option">13</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">18</div>
+                <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="Limonada Frozen"
+                    class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Limonada Frozen</h3>
+                    <p>Preparada al instante con limones frescos, azúcar y mucho hielo.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">18</div>
+                <img src="{{ url_for('static', filename='image/carta-bebida/bebida1.jpg') }}" alt="Maracuyá Frozen"
+                    class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Maracuyá Frozen</h3>
+                    <p>Refrescante bebida de maracuyá con hielo frappé y azúcar.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">3.5</div>
+                <img src="{{ url_for('static', filename='image/carta-bebida/bebida2.jpg') }}" alt="Agua"
+                    class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Agua</h3>
+                    <p>Agua natural embotellada.</p>
+                    <div class="multi-price">
+                        <span class="size-label">Natural:</span><span class="price-option">3.5</span>
+                        <span class="size-label">Con Gas:</span><span class="price-option">4.5</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">4</div>
+                <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="Infusiones"
+                    class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Infusiones</h3>
+                    <p>Té de manzanilla, hierba luisa o anís. Perfectas para relajarse.</p>
+                    <div class="multi-price">
+                        <span class="size-label">Té - Manzanilla:</span><span class="price-option">4</span>
+                        <span class="size-label">Hierba Luisa - Anís:</span><span class="price-option">4</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">5</div>
+                <img src="{{ url_for('static', filename='image/carta-bebida/bebida1.jpg') }}" alt="Café"
+                    class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Café</h3>
+                    <p>Café recién preparado, aromático y de alta calidad.</p>
+                    <div class="multi-price">
+                        <span class="size-label">Solo:</span><span class="price-option">5</span>
+                        <span class="size-label">Con Leche:</span><span class="price-option">7</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">8</div>
+                <img src="{{ url_for('static', filename='image/carta-bebida/bebida2.jpg') }}" alt="Leche con Milo"
+                    class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Leche con Milo</h3>
+                    <p>Deliciosa bebida achocolatada, perfecta para cualquier momento.</p>
+                </div>
+            </div>
+
+            <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+                <div class="price-tag">15</div>
+                <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="Infusión de Naranja"
+                    class="w-full h-64 object-cover">
+                <div class="p-6 text-white">
+                    <h3 class="text-2xl font-bold mb-2">Infusión de Naranja</h3>
+                    <p>Naranja, té, limón, hierba buena. Combinación refrescante y aromática.</p>
+                </div>
+            </div>
+        </div>
+</div>
+
+</section>
+
+<section id="section-barras" class="flex flex-col items-center justify-center p-8 space-y-8">
+    <h1 id="barras" class="text-5xl font-cinzel text-white mb-4">Barras</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl">
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">10</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida1.jpg') }}" alt="Pilsen"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Pilsen</h3>
+                <p>Cerveza rubia de sabor suave y refrescante.</p>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">12</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida2.jpg') }}" alt="Cuzqueña"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Cuzqueña</h3>
+                <p>Cerveza premium peruana de excelente calidad y sabor único.</p>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">15</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="Corona"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Corona</h3>
+                <p>Cerveza clara de origen mexicano, con un sabor ligero y refrescante.</p>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">15</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="Stella Artois"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Stella Artois</h3>
+                <p>Cerveza belga de sabor suave y refrescante.</p>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">16</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="Artesanal"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Artesanal</h3>
+                <p>Cerveza de producción artesanal con sabor único y especial.</p>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">20</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="Pisco Sour"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Pisco Sour</h3>
+                <p>Cóctel peruano a base de pisco, limón, azúcar y clara de huevo.</p>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">20</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="Daiquiri de Piña"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Daiquiri de Piña</h3>
+                <p>Cóctel a base de ron, jugo de piña y limón, servido en una copa fría.</p>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">18</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="Mojito"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Mojito</h3>
+                <p>Cóctel cubano a base de ron, menta, azúcar y limón.</p>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">18</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="Chilcano de Limón"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Chilcano de Limón</h3>
+                <p>Cóctel peruano a base de pisco, limón, ginger ale y hielo.</p>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">18</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="Chilcano de maracuyá"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Chilcano de maracuyá</h3>
+                <p>Cóctel peruano a base de pisco, maracuyá, ginger ale y hielo.</p>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">18</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="Cuba Libre"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Cuba Libre</h3>
+                <p>Cóctel a base de ron, cola y limón, servido con hielo.</p>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">18</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="Baileys"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Baileys</h3>
+                <p>Licor de crema irlandesa, suave y dulce, ideal para disfrutar solo o en cócteles.</p>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">16</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="Algarrobina"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Algarrobina</h3>
+                <p>Licor peruano a base de algarrobo, leche condensada y pisco.</p>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">20</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="Tinto de Verano"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Tinto de Verano</h3>
+                <p>Cóctel refrescante a base de vino tinto y soda de limón, servido con hielo.</p>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">20</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="Aperol Spritz"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Aperol Spritz</h3>
+                <p>Licor italiano a base de hierbas y naranja, ideal para cócteles.</p>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">22</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="Gin Tonic"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Gin Tonic</h3>
+                <p>Cóctel refrescante a base de ginebra y agua tónica, servido con hielo y limón.</p>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">22</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="Negroni"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Negroni</h3>
+                <p>Cóctel clásico italiano a base de ginebra, vermut rojo y Campari, servido con hielo.</p>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">35</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="Sangria"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Sangria</h3>
+                <p>Bebida tradicional española a base de vino tinto, frutas y un toque de brandy. Jarra de sangría tinta.</p>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">18</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="Calientito"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Calientito</h3>
+                <p>Té - Flor de Jamaica - Hierba Buena - Miel - Pisco - Ron</p>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</section>
+
+<section id="section-vino" class="flex flex-col items-center justify-center p-8 space-y-8">
+    <h1 id="vino" class="text-5xl font-cinzel text-white mb-4">Vino</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl">
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">45</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida1.jpg') }}" alt="Buenos Aires"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Buenos Aires</h3>
+                <p>Malbec argentino de excelente calidad y cuerpo.</p>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">80</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida2.jpg') }}" alt="Finca las Moras"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Finca las Moras</h3>
+                <p>Vino argentino de alta gama.</p>
+                <div class="multi-price">
+                    <span class="size-label">Especial, Malbec:</span><span class="price-option">80</span>
+                    <span class="size-label">Malbec:</span><span class="price-option">40</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">99</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="El Enemigo"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">El Enemigo</h3>
+                <p>Vinos premium argentinos de reconocida calidad.</p>
+                <div class="multi-price">
+                    <span class="size-label">Malbec:</span><span class="price-option">99</span>
+                    <span class="size-label">Chardonnay, Blanco:</span><span class="price-option">95</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">80</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida1.jpg') }}" alt="Tabernero"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Tabernero</h3>
+                <p>Vinos peruanos de excelente tradición.</p>
+                <div class="multi-price">
+                    <span class="size-label">Vittoria, Malbec:</span><span class="price-option">80</span>
+                    <span class="size-label">Rosé Selección:</span><span class="price-option">30</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">45</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida2.jpg') }}" alt="Finca Rotondo"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Finca Rotondo</h3>
+                <p>Vinos uruguayos de gran calidad.</p>
+                <div class="multi-price">
+                    <span class="size-label">Chardonnay, Blanco:</span><span class="price-option">45</span>
+                    <span class="size-label">Reserva, Malbec:</span><span class="price-option">54</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">30</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida3.jpg') }}" alt="Tacama"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Tacama</h3>
+                <p>Reconocida bodega peruana con tradición de más de 400 años.</p>
+                <div class="multi-price">
+                    <span class="size-label">Las Tablas, Gran Tinto:</span><span class="price-option">30</span>
+                    <span class="size-label">Selección Especial, Malbec:</span><span class="price-option">40</span>
+                    <span class="size-label">Don Manuel:</span><span class="price-option">90</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card bg-card bg-opacity-90 rounded-lg overflow-hidden shadow-lg relative">
+            <div class="price-tag">40</div>
+            <img src="{{ url_for('static', filename='image/carta-bebida/bebida1.jpg') }}" alt="Intipalka"
+                class="w-full h-64 object-cover">
+            <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Intipalka</h3>
+                <p>Bodega peruana de alta calidad en el valle de Ica.</p>
+                <div class="multi-price">
+                    <span class="size-label">Chardonnay, Blanco:</span><span class="price-option">40</span>
+                    <span class="size-label">Malbec:</span><span class="price-option">35</span>
+                    <span class="size-label">Rosé:</span><span class="price-option">35</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="{{ url_for('static', filename='js/carta_bebidas.js') }}"></script>
+</div>
+{% endblock %}

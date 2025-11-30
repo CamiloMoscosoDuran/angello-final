@@ -1,0 +1,141 @@
+{% extends "index.html" %}
+
+{% block title %}Método de Pago{% endblock %}
+
+{% block extra_head %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cartas.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pago.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="bg-cartas">
+
+  <!-- NAVBAR -->
+
+  <nav class="navbar">
+    <div class="logo">
+      <a href="{{ url_for('inicio') }}">
+        <img src="{{ url_for('static', filename='image/inicio/logo.png') }}" alt="Logo Angello">
+      </a>
+      <span>Angello</span>
+    </div>
+    <div class="links">
+      <a href="{{ url_for('inicio') }}" class="main-link">Inicio</a>
+      <a href="{{ url_for('cartas') }}" class="main-link">Nuestra Carta</a>
+      <a href="{{ url_for('historia') }}">Nuestra Historia</a>
+      <a href="{{ url_for('promociones') if loggedin else url_for('inicio_secion') }}">Promociones</a>
+      <a href="{{ url_for('reserva') }}">Reservaciones</a>
+      <a href="{{ url_for('delivery') }}">Delivery</a>
+    </div>
+    <div class="user-actions">
+      {% if loggedin %}
+      <span class="saludo">👋 Hola, {{ nombre }}</span>
+      <a href="{{ url_for('logout') }}" class="btn-accent">Cerrar sesión</a>
+      {% else %}
+      <a href="{{ url_for('inicio_secion') }}" class="btn-accent">Iniciar Sesión</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <!-- CONTENIDO PRINCIPAL -->
+
+  <div class="main-wrapper">
+    <div class="content-box pago-box">
+      <h1 class="section-title">Selecciona un método de pago</h1>
+
+```
+  <label class="label-direccion">Dirección de entrega:</label>
+  <input type="text" id="direccion" class="input-direccion" placeholder="Ingresa tu dirección" required>
+
+  <div class="metodo-cuadro">
+    <div class="metodo-tarjeta" data-metodo="Yape">
+      <input type="radio" name="idMetodoPago" value="Yape" style="display:none;">
+      <p>Yape</p>
+      <!-- miniatura dentro de la tarjeta -->
+      <img src="{{ url_for('static', filename='image/carta/bebida.png') }}" alt="QR Yape" class="mini-img">
+    </div>
+
+    <!-- Zona central de vista previa y botón confirmar -->
+    <div class="metodo-preview">
+      <div class="preview-inner">
+        <img id="preview-img" src="" alt="Vista previa" style="display:none;" />
+      </div>
+      <button id="preview-confirm" class="btn-confirmar" style="display:none;">Confirmar</button>
+    </div>
+
+    <div class="metodo-tarjeta" data-metodo="Efectivo">
+      <input type="radio" name="idMetodoPago" value="Efectivo" style="display:none;">
+      <p>Efectivo</p>
+      <!-- miniatura dentro de la tarjeta -->
+      <img src="{{ url_for('static', filename='image/carta/pollo.png') }}" alt="Efectivo" class="mini-img">
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <p>&copy; 2025 Restaurante Angello - Todos los derechos reservados.
+      <a href="#">Política de Privacidad</a> | <a href="#">Términos</a>
+    </p>
+  </footer>
+</div>
+
+<script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+
+<script>
+const tarjetas = document.querySelectorAll('.metodo-tarjeta');
+
+const tarjetasNode = document.querySelectorAll('.metodo-tarjeta');
+const previewImg = document.getElementById('preview-img');
+const previewConfirm = document.getElementById('preview-confirm');
+
+tarjetasNode.forEach(tarjeta => {
+  tarjeta.addEventListener('click', () => {
+    // marcar visualmente
+    tarjetasNode.forEach(t => t.classList.remove('selected'));
+    tarjeta.classList.add('selected');
+
+    // actualizar la imagen de preview con la miniatura de la tarjeta
+    const mini = tarjeta.querySelector('img');
+    if(mini && mini.src){
+      previewImg.src = mini.src;
+      previewImg.style.display = 'block';
+      previewConfirm.style.display = 'inline-block';
+      // almacenar metodo en el botón
+      previewConfirm.dataset.metodo = tarjeta.dataset.metodo;
+    }
+
+    // marcar radio (si es necesario)
+    const radio = tarjeta.querySelector('input[type="radio"]');
+    if(radio) radio.checked = true;
+  });
+});
+
+function confirmarPago(metodo){
+  const direccion = document.getElementById('direccion').value.trim();
+  if (!direccion){
+    alert('Por favor ingresa tu dirección.');
+    return;
+  }
+  const url = "{{ url_for('pago_confirmado') }}";
+  window.location.href = url + "?metodo=" + metodo + "&direccion=" + encodeURIComponent(direccion);
+}
+
+// click handler central del botón de preview
+previewConfirm.addEventListener('click', () => {
+  const metodo = previewConfirm.dataset.metodo;
+  if(metodo) confirmarPago(metodo);
+});
+
+// ocultar preview al cargar
+previewImg.style.display = 'none';
+previewConfirm.style.display = 'none';
+</script>
+
+{% endblock %}
